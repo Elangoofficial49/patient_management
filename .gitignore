@@ -13,6 +13,11 @@ target/
 .settings/
 .vscode/
 
+# Environment & Secrets
+.env
+.env.local
+.env.*.local
+
 # OS / Temp
 .DS_Store
 Thumbs.db
