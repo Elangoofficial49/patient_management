@@ -14,3 +14,4 @@ public class FaviconController {
         return ResponseEntity.noContent().build();
     }
 }
+

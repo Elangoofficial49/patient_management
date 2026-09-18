@@ -112,3 +112,38 @@ function handleLogout() {
     }, 500);
 }
 
+// Global Tab Handler for Dashboard Navigation
+document.addEventListener('DOMContentLoaded', () => {
+    setupSidebarTabNavigation();
+});
+
+function setupSidebarTabNavigation() {
+    document.querySelectorAll('.sidebar-nav a[data-bs-toggle="tab"]').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = link.getAttribute('data-bs-target') || link.getAttribute('href');
+            if (!targetId || targetId === '#') return;
+
+            // Highlight sidebar item
+            const nav = link.closest('.sidebar-nav');
+            if (nav) {
+                nav.querySelectorAll('a').forEach(a => a.classList.remove('active'));
+            }
+            link.classList.add('active');
+
+            // Switch tab pane
+            const targetPane = document.querySelector(targetId);
+            if (targetPane) {
+                const content = targetPane.closest('.tab-content');
+                if (content) {
+                    content.querySelectorAll('.tab-pane').forEach(pane => {
+                        pane.classList.remove('show', 'active');
+                    });
+                }
+                targetPane.classList.add('show', 'active');
+            }
+        });
+    });
+}
+
+
