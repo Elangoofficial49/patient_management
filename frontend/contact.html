@@ -3,56 +3,135 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us - CarePulse</title>
+    <title>Contact & Emergency Care | CarePulse Hospital</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+
+    <!-- Top Emergency Bar -->
+    <div class="top-bar d-none d-md-block">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="d-flex gap-4">
+                <span><i class="bi bi-telephone-fill text-danger me-1"></i> 24/7 Emergency: <strong>1-800-CARE-PULSE</strong></span>
+            </div>
+            <div>
+                <a href="/login.html" class="me-3"><i class="bi bi-person-fill me-1"></i> Patient Portal</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" href="/index.html">
-                <i class="bi bi-hospital text-primary me-2 fs-3"></i> CarePulse
+                <i class="bi bi-heart-pulse-fill me-2 fs-3"></i> CarePulse <span class="fs-6 text-muted ms-2 fw-normal d-none d-sm-inline">Hospital</span>
             </a>
-            <div class="collapse navbar-collapse">
-                <ul class="navbar-nav me-auto">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
                     <li class="nav-item"><a class="nav-link" href="/index.html">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="/about.html">About Us</a></li>
                     <li class="nav-item"><a class="nav-link" href="/departments.html">Departments</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/doctors.html">Doctors</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="/contact.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/doctors.html">Specialists</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="/contact.html">Contact & Emergency</a></li>
                 </ul>
-                <a href="/login.html" class="btn btn-outline-primary me-2">Login</a>
-                <a href="/register.html" class="btn btn-primary">Register</a>
+                <div class="d-flex gap-2">
+                    <a href="/login.html" class="btn btn-outline-primary">Login</a>
+                    <a href="/register.html" class="btn btn-primary">Book Appointment</a>
+                </div>
             </div>
         </div>
     </nav>
 
-    <div class="container py-5">
-        <h2 class="fw-bold text-primary mb-4">Contact CarePulse Hospital</h2>
-        <div class="row g-4">
-            <div class="col-md-6">
-                <div class="card p-4 border-0 shadow-sm">
-                    <h5 class="fw-bold mb-3">Hospital Information</h5>
-                    <p class="mb-2"><i class="bi bi-geo-alt text-primary me-2"></i> 100 Health Sciences Blvd, Medical District</p>
-                    <p class="mb-2"><i class="bi bi-telephone text-primary me-2"></i> +1 (800) 555-CARE (2273)</p>
-                    <p class="mb-2"><i class="bi bi-envelope text-primary me-2"></i> support@carepulse.hospital</p>
-                    <p class="mb-0"><i class="bi bi-clock text-primary me-2"></i> Emergency Services: 24/7 Available</p>
+    <!-- Header Banner -->
+    <section class="py-5 bg-dark text-white text-center">
+        <div class="container py-3">
+            <h1 class="fw-bold display-5">Contact Us & Emergency Trauma Care</h1>
+            <p class="lead text-light max-w-2xl mx-auto">Get in touch with our patient support center or request immediate emergency assistance.</p>
+        </div>
+    </section>
+
+    <!-- Contact & Location Information -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-5">
+                    <div class="card border-0 shadow-sm p-4 h-100 bg-white">
+                        <h3 class="fw-bold mb-4 text-primary"><i class="bi bi-hospital me-2"></i> Hospital Information</h3>
+                        <div class="mb-4">
+                            <h6 class="fw-bold mb-1"><i class="bi bi-geo-alt-fill text-danger me-2"></i> Main Address</h6>
+                            <p class="text-muted">742 Evergreen Terrace, Medical District, Suite 100</p>
+                        </div>
+                        <div class="mb-4">
+                            <h6 class="fw-bold mb-1"><i class="bi bi-telephone-fill text-success me-2"></i> Emergency Phone</h6>
+                            <p class="text-muted mb-0">1-800-CARE-PULSE (24 Hours)</p>
+                            <p class="text-muted">+1-555-0192 (General Reception)</p>
+                        </div>
+                        <div class="mb-4">
+                            <h6 class="fw-bold mb-1"><i class="bi bi-clock-fill text-warning me-2"></i> Visiting & OPD Hours</h6>
+                            <p class="text-muted mb-0">Outpatient Dept: Mon - Sat (8:00 AM - 8:00 PM)</p>
+                            <p class="text-muted">Inpatient Visiting: Daily (4:00 PM - 7:00 PM)</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-6">
-                <div class="card p-4 border-0 shadow-sm">
-                    <h5 class="fw-bold mb-3">Send Us a Message</h5>
-                    <form onsubmit="alert('Message sent successfully!'); return false;">
-                        <div class="mb-3"><input type="text" class="form-control" placeholder="Your Name" required></div>
-                        <div class="mb-3"><input type="email" class="form-control" placeholder="Your Email" required></div>
-                        <div class="mb-3"><textarea class="form-control" rows="3" placeholder="Message" required></textarea></div>
-                        <button type="submit" class="btn btn-primary w-100">Send Message</button>
-                    </form>
+                <div class="col-lg-7">
+                    <div class="card border-0 shadow-sm p-4 bg-white">
+                        <h3 class="fw-bold mb-3">Send Us an Inquiry</h3>
+                        <form onsubmit="handleContactSubmit(event)">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label fw-semibold">Your Name *</label>
+                                    <input type="text" class="form-control" required placeholder="John Doe">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label fw-semibold">Email Address *</label>
+                                    <input type="email" class="form-control" required placeholder="john@example.com">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label fw-semibold">Phone Number</label>
+                                    <input type="tel" class="form-control" placeholder="+1-555-0100">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label fw-semibold">Department Inquiry</label>
+                                    <select class="form-select">
+                                        <option value="General">General Inquiry</option>
+                                        <option value="Cardiology">Cardiology</option>
+                                        <option value="Neurology">Neurology</option>
+                                        <option value="Billing">Billing & Insurance</option>
+                                    </select>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label fw-semibold">Message / Questions *</label>
+                                    <textarea class="form-control" rows="4" required placeholder="How can we assist you today?"></textarea>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary mt-4 py-2 px-4"><i class="bi bi-send me-1"></i> Send Message</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2026 CarePulse Hospital Patient Management System. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/api.js"></script>
+    <script>
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            showToast('Thank you for contacting CarePulse. Our team will respond shortly!', 'success');
+            e.target.reset();
+        }
+    </script>
 </body>
 </html>
-

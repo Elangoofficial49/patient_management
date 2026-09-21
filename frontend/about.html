@@ -3,49 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us - CarePulse</title>
+    <title>About Us | CarePulse Hospital</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+
+    <!-- Top Emergency & Info Bar -->
+    <div class="top-bar d-none d-md-block">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="d-flex gap-4">
+                <span><i class="bi bi-telephone-fill text-danger me-1"></i> 24/7 Emergency: <strong>1-800-CARE-PULSE</strong></span>
+                <span><i class="bi bi-geo-alt-fill text-primary me-1"></i> 742 Evergreen Terrace, Medical District</span>
+            </div>
+            <div>
+                <a href="/login.html" class="me-3"><i class="bi bi-person-fill me-1"></i> Patient Portal</a>
+                <a href="/doctors.html"><i class="bi bi-search me-1"></i> Find Specialist</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" href="/index.html">
-                <i class="bi bi-hospital text-primary me-2 fs-3"></i> CarePulse
+                <i class="bi bi-heart-pulse-fill me-2 fs-3"></i> CarePulse <span class="fs-6 text-muted ms-2 fw-normal d-none d-sm-inline">Hospital</span>
             </a>
-            <div class="collapse navbar-collapse">
-                <ul class="navbar-nav me-auto">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
                     <li class="nav-item"><a class="nav-link" href="/index.html">Home</a></li>
                     <li class="nav-item"><a class="nav-link active" href="/about.html">About Us</a></li>
                     <li class="nav-item"><a class="nav-link" href="/departments.html">Departments</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/doctors.html">Doctors</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/contact.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/doctors.html">Specialists</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/contact.html">Contact & Emergency</a></li>
                 </ul>
-                <a href="/login.html" class="btn btn-outline-primary me-2">Login</a>
-                <a href="/register.html" class="btn btn-primary">Register</a>
+                <div class="d-flex gap-2">
+                    <a href="/login.html" class="btn btn-outline-primary">Login</a>
+                    <a href="/register.html" class="btn btn-primary">Book Appointment</a>
+                </div>
             </div>
         </div>
     </nav>
 
-    <div class="container py-5">
-        <h2 class="fw-bold mb-3 text-primary">About CarePulse Hospital</h2>
-        <p class="lead">CarePulse is a next-generation healthcare institution committed to delivering patient-centric medical excellence and seamless digital hospital operations.</p>
-        <div class="row mt-4 g-4">
-            <div class="col-md-6">
-                <div class="card p-4 border-0 shadow-sm">
-                    <h4 class="fw-bold text-dark"><i class="bi bi-bullseye me-2 text-primary"></i>Our Mission</h4>
-                    <p class="text-muted">To provide accessible, high-quality healthcare backed by advanced clinical technology and compassionate care.</p>
+    <!-- Header Banner -->
+    <section class="py-5 bg-dark text-white position-relative overflow-hidden">
+        <div class="container py-4 text-center">
+            <h1 class="fw-bold display-5">About CarePulse Hospital</h1>
+            <p class="lead text-light max-w-2xl mx-auto">Pioneering compassionate medical treatment, advanced clinical research, and patient-centered care since 2010.</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row align-items-center mb-5">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <span class="text-primary fw-bold text-uppercase">Our Medical Mission</span>
+                    <h2 class="fw-bold fs-1 mt-2">Setting the Standard for Medical Quality & Safety</h2>
+                    <p class="text-muted fs-5">CarePulse Hospital is a multi-specialty tertiary care healthcare institution. We unite renowned medical professionals, state-of-the-art diagnostic technology, and digital patient record systems under one roof.</p>
+                    <div class="row g-3 mt-3">
+                        <div class="col-6">
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-check-circle-fill text-success fs-3 me-3"></i>
+                                <div>
+                                    <h6 class="fw-bold mb-0">JCI Accredited</h6>
+                                    <small class="text-muted">International standard</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-shield-fill-check text-primary fs-3 me-3"></i>
+                                <div>
+                                    <h6 class="fw-bold mb-0">24/7 Trauma Care</h6>
+                                    <small class="text-muted">Immediate response</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-6">
-                <div class="card p-4 border-0 shadow-sm">
-                    <h4 class="fw-bold text-dark"><i class="bi bi-eye me-2 text-primary"></i>Our Vision</h4>
-                    <p class="text-muted">To redefine hospital administration and digital patient experience across global healthcare standards.</p>
+                <div class="col-lg-6">
+                    <div class="card border-0 shadow-lg p-4 bg-white">
+                        <h4 class="fw-bold mb-3"><i class="bi bi-award text-warning me-2"></i> Our Core Values</h4>
+                        <ul class="list-unstyled">
+                            <li class="mb-3 d-flex"><i class="bi bi-star-fill text-primary me-3 mt-1"></i><div><strong>Compassionate Care:</strong> Putting patient empathy and dignity at the heart of treatment.</div></li>
+                            <li class="mb-3 d-flex"><i class="bi bi-star-fill text-primary me-3 mt-1"></i><div><strong>Clinical Innovation:</strong> Adopting leading diagnostic and surgical innovations.</div></li>
+                            <li class="mb-3 d-flex"><i class="bi bi-star-fill text-primary me-3 mt-1"></i><div><strong>Digital Integrity:</strong> Encrypted, instant access to medical records and prescriptions.</div></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2026 CarePulse Hospital Patient Management System. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-

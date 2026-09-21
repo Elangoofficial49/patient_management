@@ -3,93 +3,245 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CarePulse | Patient Management System</title>
+    <title>CarePulse Hospital | Excellence in Healthcare & Patient Management</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+    <!-- Top Emergency & Info Bar -->
+    <div class="top-bar d-none d-md-block">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="d-flex gap-4">
+                <span><i class="bi bi-telephone-fill text-danger me-1"></i> 24/7 Emergency: <strong>1-800-CARE-PULSE</strong></span>
+                <span><i class="bi bi-geo-alt-fill text-primary me-1"></i> 742 Evergreen Terrace, Medical District</span>
+                <span><i class="bi bi-clock-fill text-warning me-1"></i> OPD Hours: 8:00 AM - 8:00 PM</span>
+            </div>
+            <div>
+                <a href="/login.html" class="me-3"><i class="bi bi-person-fill me-1"></i> Patient Portal</a>
+                <a href="/doctors.html"><i class="bi bi-search me-1"></i> Find Specialist</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" href="/index.html">
-                <i class="bi bi-hospital text-primary me-2 fs-3"></i> CarePulse
+                <i class="bi bi-heart-pulse-fill me-2 fs-3"></i> CarePulse <span class="fs-6 text-muted ms-2 fw-normal d-none d-sm-inline">Hospital</span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto">
+                <ul class="navbar-nav mx-auto">
                     <li class="nav-item"><a class="nav-link active" href="/index.html">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="/about.html">About Us</a></li>
                     <li class="nav-item"><a class="nav-link" href="/departments.html">Departments</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/doctors.html">Doctors</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/contact.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/doctors.html">Specialists</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/contact.html">Contact & Emergency</a></li>
                 </ul>
                 <div class="d-flex gap-2">
                     <a href="/login.html" class="btn btn-outline-primary"><i class="bi bi-box-arrow-in-right me-1"></i> Login</a>
-                    <a href="/register.html" class="btn btn-primary"><i class="bi bi-person-plus me-1"></i> Register</a>
+                    <a href="/register.html" class="btn btn-primary"><i class="bi bi-calendar-check me-1"></i> Book Appointment</a>
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- Hero -->
-    <section class="hero-section text-center">
-        <div class="container">
-            <h1 class="display-4 fw-bold mb-3">Modern Healthcare Management</h1>
-            <p class="lead mb-4 max-w-2xl mx-auto">Book appointments, consult with top specialist doctors, access digital prescriptions and medical history all in one place.</p>
-            <div class="d-flex justify-content-center gap-3">
-                <a href="/register.html" class="btn btn-light btn-lg text-primary fw-bold px-4">Book Appointment</a>
-                <a href="/doctors.html" class="btn btn-outline-light btn-lg px-4">Find Doctor</a>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container position-relative">
+            <div class="row align-items-center">
+                <div class="col-lg-7 mb-4 mb-lg-0">
+                    <span class="badge bg-light text-dark px-3 py-2 rounded-pill fw-bold mb-3"><i class="bi bi-shield-check text-success me-1"></i> JCI Accredited Hospital</span>
+                    <h1 class="hero-title">Advanced Care, Personal Commitment to Your Health</h1>
+                    <p class="hero-subtitle">Experience compassionate, world-class healthcare with leading specialist doctors, state-of-the-art diagnostic facilities, and seamless digital health records.</p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="/register.html" class="btn btn-primary btn-lg"><i class="bi bi-calendar-event me-2"></i> Book Appointment</a>
+                        <a href="/doctors.html" class="btn btn-outline-light btn-lg"><i class="bi bi-person-lines-fill me-2"></i> Find a Specialist</a>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="row g-3">
+                        <div class="col-6">
+                            <div class="stat-counter-box">
+                                <h3>50,000+</h3>
+                                <p>Patients Treated</p>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="stat-counter-box">
+                                <h3>150+</h3>
+                                <p>Top Specialists</p>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="stat-counter-box">
+                                <h3>99.4%</h3>
+                                <p>Satisfaction Rate</p>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="stat-counter-box">
+                                <h3>24/7</h3>
+                                <p>Emergency Care</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Features -->
-    <section class="py-5">
+    <!-- Quick Search / Booking Bar -->
+    <div class="container">
+        <div class="quick-search-card">
+            <form action="/doctors.html" method="GET" class="row g-3 align-items-center">
+                <div class="col-md-4">
+                    <label class="form-label fw-bold text-secondary mb-1"><i class="bi bi-search me-1"></i> Search Doctor or Symptom</label>
+                    <input type="text" name="search" class="form-control form-control-lg" placeholder="e.g. Dr. Sarah, Cardiology, Headache">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label fw-bold text-secondary mb-1"><i class="bi bi-building me-1"></i> Department</label>
+                    <select name="departmentId" class="form-select form-select-lg">
+                        <option value="">All Clinical Departments</option>
+                        <option value="cardiology">Cardiology</option>
+                        <option value="neurology">Neurology</option>
+                        <option value="orthopedics">Orthopedics</option>
+                        <option value="pediatrics">Pediatrics</option>
+                        <option value="dermatology">Dermatology</option>
+                        <option value="general">General Medicine</option>
+                    </select>
+                </div>
+                <div class="col-md-4 d-flex align-items-end">
+                    <button type="submit" class="btn btn-primary btn-lg w-100 py-3"><i class="bi bi-search me-2"></i> Find Available Doctors</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Clinical Services & Departments -->
+    <section class="py-5 mt-5">
         <div class="container">
-            <div class="text-center mb-5">
-                <h2 class="fw-bold">Why Choose CarePulse?</h2>
-                <p class="text-muted">Empowering patients and doctors with seamless medical management.</p>
+            <div class="text-center max-w-2xl mx-auto mb-5">
+                <span class="text-primary fw-bold text-uppercase tracking-wider">Centers of Excellence</span>
+                <h2 class="fw-bold fs-1 mt-1">Comprehensive Clinical Services</h2>
+                <p class="text-muted">Our multi-specialty hospital provides multi-disciplinary care backed by cutting-edge medical technology.</p>
             </div>
             <div class="row g-4">
                 <div class="col-md-4">
-                    <div class="card h-100 border-0 shadow-sm p-4 text-center">
-                        <div class="stat-icon bg-light-primary mx-auto mb-3">
-                            <i class="bi bi-calendar-check"></i>
-                        </div>
-                        <h4 class="fw-bold">Easy Scheduling</h4>
-                        <p class="text-muted">Book and reschedule doctor appointments online in seconds with instant confirmation.</p>
+                    <div class="card-feature">
+                        <div class="feature-icon"><i class="bi bi-heart-pulse"></i></div>
+                        <h4 class="fw-bold">Cardiology</h4>
+                        <p class="text-muted">Comprehensive cardiovascular care, ECG, echocardiography, interventional cardiology, and heart wellness programs.</p>
+                        <a href="/doctors.html" class="text-primary fw-bold text-decoration-none">Consult Specialist <i class="bi bi-arrow-right me-1"></i></a>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="card h-100 border-0 shadow-sm p-4 text-center">
-                        <div class="stat-icon bg-light-success mx-auto mb-3">
-                            <i class="bi bi-person-square"></i>
-                        </div>
-                        <h4 class="fw-bold">Expert Doctors</h4>
-                        <p class="text-muted">Access leading medical specialists across Cardiology, Neurology, Pediatrics & more.</p>
+                    <div class="card-feature">
+                        <div class="feature-icon"><i class="bi bi-activity"></i></div>
+                        <h4 class="fw-bold">Neurology</h4>
+                        <p class="text-muted">Advanced diagnosis and treatment for stroke, epilepsy, migraines, spinal conditions, and neuro-rehabilitation.</p>
+                        <a href="/doctors.html" class="text-primary fw-bold text-decoration-none">Consult Specialist <i class="bi bi-arrow-right me-1"></i></a>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="card h-100 border-0 shadow-sm p-4 text-center">
-                        <div class="stat-icon bg-light-warning mx-auto mb-3">
-                            <i class="bi bi-file-earmark-medical"></i>
-                        </div>
-                        <h4 class="fw-bold">Digital Records</h4>
-                        <p class="text-muted">Securely view medical history, clinical diagnoses, and prescriptions anywhere.</p>
+                    <div class="card-feature">
+                        <div class="feature-icon"><i class="bi bi-person-workspace"></i></div>
+                        <h4 class="fw-bold">Orthopedics</h4>
+                        <p class="text-muted">Joint replacements, sports injuries, fracture management, arthroscopy, and physical trauma care.</p>
+                        <a href="/doctors.html" class="text-primary fw-bold text-decoration-none">Consult Specialist <i class="bi bi-arrow-right me-1"></i></a>
                     </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card-feature">
+                        <div class="feature-icon"><i class="bi bi-emoji-smile"></i></div>
+                        <h4 class="fw-bold">Pediatrics</h4>
+                        <p class="text-muted">Dedicated child healthcare, newborn care, vaccinations, growth monitoring, and pediatric emergency services.</p>
+                        <a href="/doctors.html" class="text-primary fw-bold text-decoration-none">Consult Specialist <i class="bi bi-arrow-right me-1"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card-feature">
+                        <div class="feature-icon"><i class="bi bi-sun"></i></div>
+                        <h4 class="fw-bold">Dermatology</h4>
+                        <p class="text-muted">Advanced skin care therapies, cosmetic dermatology, allergic reactions, and laser treatment options.</p>
+                        <a href="/doctors.html" class="text-primary fw-bold text-decoration-none">Consult Specialist <i class="bi bi-arrow-right me-1"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card-feature">
+                        <div class="feature-icon"><i class="bi bi-hospital"></i></div>
+                        <h4 class="fw-bold">General Medicine</h4>
+                        <p class="text-muted">Primary diagnostic health checkups, chronic disease management, fever, and preventive wellness exams.</p>
+                        <a href="/doctors.html" class="text-primary fw-bold text-decoration-none">Consult Specialist <i class="bi bi-arrow-right me-1"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Emergency & Telehealth Banner -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="emergency-banner d-flex flex-column flex-md-row align-items-center justify-content-between gap-4">
+                <div>
+                    <h3 class="fw-bold mb-2"><i class="bi bi-exclamation-triangle-fill me-2"></i> Need Immediate Medical Assistance?</h3>
+                    <p class="mb-0 fs-5">Our 24/7 Emergency Trauma Unit and Virtual Telehealth consultations are ready to serve you.</p>
+                </div>
+                <div class="d-flex gap-3 flex-shrink-0">
+                    <a href="tel:18002273785" class="btn btn-light btn-lg text-danger fw-bold"><i class="bi bi-telephone-out-fill me-1"></i> Call Emergency</a>
+                    <a href="/login.html" class="btn btn-outline-light btn-lg fw-bold"><i class="bi bi-laptop me-1"></i> Virtual Consultation</a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-dark text-white py-4 mt-5">
-        <div class="container text-center">
-            <p class="mb-0">&copy; 2026 CarePulse Patient Management System. All rights reserved.</p>
+    <footer>
+        <div class="container">
+            <div class="row g-4 mb-5">
+                <div class="col-lg-4">
+                    <h5 class="d-flex align-items-center"><i class="bi bi-heart-pulse-fill text-primary me-2"></i> CarePulse Hospital</h5>
+                    <p>Providing compassionate, state-of-the-art medical services with top clinical specialists and digital health records.</p>
+                    <div class="d-flex gap-3 fs-5 mt-3">
+                        <a href="#"><i class="bi bi-facebook"></i></a>
+                        <a href="#"><i class="bi bi-twitter-x"></i></a>
+                        <a href="#"><i class="bi bi-linkedin"></i></a>
+                        <a href="#"><i class="bi bi-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="/about.html">About CarePulse</a></li>
+                        <li class="mb-2"><a href="/departments.html">Departments</a></li>
+                        <li class="mb-2"><a href="/doctors.html">Find Doctor</a></li>
+                        <li class="mb-2"><a href="/contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-4">
+                    <h5>Patient Resources</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="/login.html">Patient Login</a></li>
+                        <li class="mb-2"><a href="/register.html">Book Appointment</a></li>
+                        <li class="mb-2"><a href="/login.html">View Prescriptions</a></li>
+                        <li class="mb-2"><a href="/contact.html">Emergency Hotline</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-4">
+                    <h5>Emergency Contact</h5>
+                    <p class="mb-1"><i class="bi bi-geo-alt me-2"></i> 742 Evergreen Terrace, Medical Center</p>
+                    <p class="mb-1"><i class="bi bi-telephone me-2"></i> Emergency: 1-800-CARE-PULSE</p>
+                    <p class="mb-0"><i class="bi bi-envelope me-2"></i> info@carepulsehospital.com</p>
+                </div>
+            </div>
+            <hr class="border-secondary my-4">
+            <div class="text-center">
+                <p class="mb-0">&copy; 2026 CarePulse Hospital Patient Management System. All rights reserved.</p>
+            </div>
         </div>
     </footer>
 
@@ -98,4 +250,3 @@
     <script src="/js/auth.js"></script>
 </body>
 </html>
-

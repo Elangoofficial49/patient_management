@@ -3,60 +3,122 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Departments - CarePulse</title>
+    <title>Clinical Departments | CarePulse Hospital</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+
+    <!-- Top Emergency Bar -->
+    <div class="top-bar d-none d-md-block">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="d-flex gap-4">
+                <span><i class="bi bi-telephone-fill text-danger me-1"></i> Emergency Hotline: <strong>1-800-CARE-PULSE</strong></span>
+            </div>
+            <div>
+                <a href="/login.html" class="me-3"><i class="bi bi-person-fill me-1"></i> Patient Portal</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" href="/index.html">
-                <i class="bi bi-hospital text-primary me-2 fs-3"></i> CarePulse
+                <i class="bi bi-heart-pulse-fill me-2 fs-3"></i> CarePulse <span class="fs-6 text-muted ms-2 fw-normal d-none d-sm-inline">Hospital</span>
             </a>
-            <div class="collapse navbar-collapse">
-                <ul class="navbar-nav me-auto">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
                     <li class="nav-item"><a class="nav-link" href="/index.html">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="/about.html">About Us</a></li>
                     <li class="nav-item"><a class="nav-link active" href="/departments.html">Departments</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/doctors.html">Doctors</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/contact.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/doctors.html">Specialists</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/contact.html">Contact & Emergency</a></li>
                 </ul>
-                <a href="/login.html" class="btn btn-outline-primary me-2">Login</a>
-                <a href="/register.html" class="btn btn-primary">Register</a>
+                <div class="d-flex gap-2">
+                    <a href="/login.html" class="btn btn-outline-primary">Login</a>
+                    <a href="/register.html" class="btn btn-primary">Book Appointment</a>
+                </div>
             </div>
         </div>
     </nav>
 
-    <div class="container py-5">
-        <div class="text-center mb-5">
-            <h2 class="fw-bold text-primary">Hospital Departments</h2>
-            <p class="text-muted">Explore specialized clinical departments offering world-class care.</p>
+    <!-- Header Banner -->
+    <section class="py-5 bg-dark text-white text-center">
+        <div class="container py-3">
+            <h1 class="fw-bold display-5">Clinical Departments</h1>
+            <p class="lead text-light max-w-2xl mx-auto">Discover our multi-disciplinary medical centers of excellence and expert specialist teams.</p>
         </div>
-        <div class="row g-4" id="publicDeptsContainer">
-            <!-- Loaded dynamically via API -->
+    </section>
+
+    <!-- Departments Showcase -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row g-4" id="departmentsGrid">
+                <!-- Dynamically filled or static initial department cards -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card-feature h-100">
+                        <div class="feature-icon"><i class="bi bi-heart-pulse"></i></div>
+                        <h4 class="fw-bold">Cardiology</h4>
+                        <p class="text-muted">Interventional cardiology, heart failure management, echocardiogram diagnostics, and cardiac rehabilitation.</p>
+                        <a href="/doctors.html?departmentId=cardiology" class="btn btn-outline-primary w-100 mt-2">View Cardiologists</a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card-feature h-100">
+                        <div class="feature-icon"><i class="bi bi-activity"></i></div>
+                        <h4 class="fw-bold">Neurology</h4>
+                        <p class="text-muted">Brain and spine care, stroke management, EEG testing, epilepsy management, and neurological treatments.</p>
+                        <a href="/doctors.html?departmentId=neurology" class="btn btn-outline-primary w-100 mt-2">View Neurologists</a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card-feature h-100">
+                        <div class="feature-icon"><i class="bi bi-person-workspace"></i></div>
+                        <h4 class="fw-bold">Orthopedics</h4>
+                        <p class="text-muted">Bone health, joint replacement surgery, spine care, sports injuries, and trauma rehabilitation.</p>
+                        <a href="/doctors.html?departmentId=orthopedics" class="btn btn-outline-primary w-100 mt-2">View Orthopedists</a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card-feature h-100">
+                        <div class="feature-icon"><i class="bi bi-emoji-smile"></i></div>
+                        <h4 class="fw-bold">Pediatrics</h4>
+                        <p class="text-muted">Comprehensive infant care, child vaccinations, developmental screening, and pediatric emergency care.</p>
+                        <a href="/doctors.html?departmentId=pediatrics" class="btn btn-outline-primary w-100 mt-2">View Pediatricians</a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card-feature h-100">
+                        <div class="feature-icon"><i class="bi bi-sun"></i></div>
+                        <h4 class="fw-bold">Dermatology</h4>
+                        <p class="text-muted">Clinical skin diagnosis, laser dermatological therapies, allergy testing, and cosmetic care.</p>
+                        <a href="/doctors.html?departmentId=dermatology" class="btn btn-outline-primary w-100 mt-2">View Dermatologists</a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card-feature h-100">
+                        <div class="feature-icon"><i class="bi bi-hospital"></i></div>
+                        <h4 class="fw-bold">General Medicine</h4>
+                        <p class="text-muted">Primary healthcare consultations, preventive wellness exams, chronic illness care, and health screening.</p>
+                        <a href="/doctors.html?departmentId=general" class="btn btn-outline-primary w-100 mt-2">View Physicians</a>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2026 CarePulse Hospital Patient Management System. All rights reserved.</p>
+        </div>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="/js/api.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', async () => {
-            try {
-                const res = await apiFetch('/admin/departments');
-                const container = document.getElementById('publicDeptsContainer');
-                container.innerHTML = res.data.map(d => `
-                    <div class="col-md-4">
-                        <div class="card h-100 border-0 shadow-sm p-4">
-                            <div class="stat-icon bg-light-primary mb-3"><i class="bi bi-building"></i></div>
-                            <h4 class="fw-bold">${d.departmentName}</h4>
-                            <p class="text-muted">${d.description}</p>
-                        </div>
-                    </div>
-                `).join('');
-            } catch(e) {}
-        });
-    </script>
 </body>
 </html>
-

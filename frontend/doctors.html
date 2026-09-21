@@ -3,65 +3,173 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Doctors - CarePulse</title>
+    <title>Find Specialist Doctors | CarePulse Hospital</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+
+    <!-- Top Emergency Bar -->
+    <div class="top-bar d-none d-md-block">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="d-flex gap-4">
+                <span><i class="bi bi-telephone-fill text-danger me-1"></i> 24/7 Emergency: <strong>1-800-CARE-PULSE</strong></span>
+            </div>
+            <div>
+                <a href="/login.html" class="me-3"><i class="bi bi-person-fill me-1"></i> Patient Portal</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" href="/index.html">
-                <i class="bi bi-hospital text-primary me-2 fs-3"></i> CarePulse
+                <i class="bi bi-heart-pulse-fill me-2 fs-3"></i> CarePulse <span class="fs-6 text-muted ms-2 fw-normal d-none d-sm-inline">Hospital</span>
             </a>
-            <div class="collapse navbar-collapse">
-                <ul class="navbar-nav me-auto">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
                     <li class="nav-item"><a class="nav-link" href="/index.html">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="/about.html">About Us</a></li>
                     <li class="nav-item"><a class="nav-link" href="/departments.html">Departments</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="/doctors.html">Doctors</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/contact.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="/doctors.html">Specialists</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/contact.html">Contact & Emergency</a></li>
                 </ul>
-                <a href="/login.html" class="btn btn-outline-primary me-2">Login</a>
-                <a href="/register.html" class="btn btn-primary">Register</a>
+                <div class="d-flex gap-2">
+                    <a href="/login.html" class="btn btn-outline-primary">Login</a>
+                    <a href="/register.html" class="btn btn-primary">Book Appointment</a>
+                </div>
             </div>
         </div>
     </nav>
 
-    <div class="container py-5">
-        <div class="text-center mb-5">
-            <h2 class="fw-bold text-primary">Our Specialist Doctors</h2>
-            <p class="text-muted">Find expert medical specialists and book online consultation.</p>
+    <!-- Header Banner -->
+    <section class="py-5 bg-dark text-white text-center">
+        <div class="container py-3">
+            <h1 class="fw-bold display-5">Find a Specialist Doctor</h1>
+            <p class="lead text-light max-w-2xl mx-auto">Browse our accredited hospital physicians, check availability, and book appointments online.</p>
         </div>
+    </section>
 
-        <div class="row g-4" id="publicDoctorsContainer">
-            <!-- Loaded dynamically via API -->
+    <!-- Search & Filter Controls -->
+    <section class="py-4">
+        <div class="container">
+            <div class="card shadow-sm border-0 p-4">
+                <div class="row g-3 align-items-center">
+                    <div class="col-md-5">
+                        <label class="form-label fw-bold text-secondary mb-1">Search Doctor or Specialty</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-white"><i class="bi bi-search"></i></span>
+                            <input type="text" id="publicDoctorSearch" class="form-control" placeholder="Search by name, specialization..." onkeyup="fetchPublicDoctors()">
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <label class="form-label fw-bold text-secondary mb-1">Filter by Department</label>
+                        <select id="publicDeptFilter" class="form-select" onchange="fetchPublicDoctors()">
+                            <option value="">All Clinical Departments</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2 d-flex align-items-end">
+                        <button class="btn btn-primary w-100 py-2" onclick="fetchPublicDoctors()"><i class="bi bi-funnel me-1"></i> Filter</button>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+    </section>
+
+    <!-- Doctor Cards Container -->
+    <section class="py-4">
+        <div class="container">
+            <div class="row g-4" id="publicDoctorsContainer">
+                <div class="col-12 text-center py-5">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading doctors...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2026 CarePulse Hospital Patient Management System. All rights reserved.</p>
+        </div>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/js/api.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', async () => {
+        document.addEventListener('DOMContentLoaded', () => {
+            loadPublicDepartments();
+            fetchPublicDoctors();
+        });
+
+        async function loadPublicDepartments() {
             try {
-                const res = await apiFetch('/patients/doctors');
+                const res = await apiFetch('/admin/departments');
+                const depts = res.data || [];
+                const select = document.getElementById('publicDeptFilter');
+                if (select) {
+                    select.innerHTML = '<option value="">All Clinical Departments</option>' + 
+                        depts.map(d => `<option value="${d.id}">${d.departmentName}</option>`).join('');
+                }
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+        async function fetchPublicDoctors() {
+            try {
+                const search = document.getElementById('publicDoctorSearch') ? document.getElementById('publicDoctorSearch').value : '';
+                const dept = document.getElementById('publicDeptFilter') ? document.getElementById('publicDeptFilter').value : '';
+                
+                let url = '/patients/doctors?';
+                if (search) url += `search=${encodeURIComponent(search)}&`;
+                if (dept) url += `departmentId=${encodeURIComponent(dept)}&`;
+
+                const res = await apiFetch(url);
+                const doctors = res.data || [];
                 const container = document.getElementById('publicDoctorsContainer');
-                container.innerHTML = res.data.map(d => `
-                    <div class="col-md-4">
-                        <div class="card h-100 border-0 shadow-sm p-4">
-                            <div class="stat-icon bg-light-primary mb-3"><i class="bi bi-person-badge"></i></div>
-                            <h4 class="fw-bold">${d.fullName}</h4>
-                            <span class="badge bg-info text-dark w-auto mb-2">${d.specialization}</span>
-                            <p class="text-muted mb-1"><strong>Qualification:</strong> ${d.qualification || 'N/A'}</p>
-                            <p class="text-muted mb-1"><strong>Experience:</strong> ${d.experience} Years</p>
-                            <p class="text-muted mb-3"><strong>Consultation Fee:</strong> $${d.consultationFee}</p>
-                            <a href="/register.html" class="btn btn-primary w-100"><i class="bi bi-calendar-plus me-1"></i> Book Appointment</a>
+                if (!container) return;
+
+                if (doctors.length === 0) {
+                    container.innerHTML = '<div class="col-12 text-center py-5 text-muted"><h5>No doctors found matching criteria.</h5></div>';
+                    return;
+                }
+
+                container.innerHTML = doctors.map(d => `
+                    <div class="col-md-6 col-lg-4">
+                        <div class="doctor-card h-100 p-4 d-flex flex-column justify-content-between">
+                            <div>
+                                <div class="d-flex align-items-center mb-3">
+                                    <div class="doctor-avatar me-3">
+                                        <i class="bi bi-person"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="fw-bold mb-0">${d.fullName}</h5>
+                                        <span class="badge bg-light-primary text-primary">${d.departmentName || 'Specialist'}</span>
+                                    </div>
+                                </div>
+                                <p class="text-muted mb-2"><i class="bi bi-briefcase me-2 text-primary"></i><strong>Specialty:</strong> ${d.specialization}</p>
+                                <p class="text-muted mb-2"><i class="bi bi-mortarboard me-2 text-primary"></i><strong>Qualification:</strong> ${d.qualification || 'MD'}</p>
+                                <p class="text-muted mb-2"><i class="bi bi-clock-history me-2 text-primary"></i><strong>Experience:</strong> ${d.experience} Years</p>
+                                <p class="text-muted mb-3"><i class="bi bi-cash-stack me-2 text-success"></i><strong>Consultation Fee:</strong> $${d.consultationFee}</p>
+                            </div>
+                            <a href="/register.html" class="btn btn-primary w-100 mt-2">
+                                <i class="bi bi-calendar-plus me-1"></i> Book Appointment
+                            </a>
                         </div>
                     </div>
                 `).join('');
-            } catch(e) {}
-        });
+            } catch (e) {
+                console.error(e);
+            }
+        }
     </script>
 </body>
 </html>
-
