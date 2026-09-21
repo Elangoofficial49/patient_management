@@ -1,31 +1,31 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
 
 :root {
-    /* Inspo MCP Professional Healthcare Palette */
-    --primary: #0F2537;         /* Deep Trust Navy */
-    --primary-light: #1E3A5F;   /* Light Navy */
+    /* Premium Healthcare Color System */
+    --primary: #0F2537;         /* Deep Slate Navy */
+    --primary-light: #1E3A5F;   /* Medium Navy */
     --primary-accent: #00A896;  /* Medical Teal */
     --primary-accent-hover: #028090;
-    --secondary-accent: #02C39A;/* Healing Mint Green */
+    --secondary-accent: #02C39A;/* Healing Mint */
     
-    --bg-light: #F8FAFC;        /* Snow / Slate tint background */
+    --bg-light: #F8FAFC;        /* Crisp Slate Tint */
     --bg-card: #FFFFFF;
     --border-color: #E2E8F0;
     
-    --text-main: #1E293B;       /* Dark Charcoal Slate */
+    --text-main: #1E293B;       /* Dark Slate */
     --text-muted: #64748B;
     --text-light: #94A3B8;
     
-    --sidebar-bg: #0F172A;
+    --sidebar-bg: #0B1727;      /* Rich Dark Obsidian */
     --sidebar-color: #94A3B8;
     --sidebar-active: #FFFFFF;
-    --sidebar-active-bg: #1E293B;
+    --sidebar-active-bg: linear-gradient(135deg, #00A896 0%, #028090 100%);
     
     --shadow-sm: 0 2px 4px rgba(0,0,0,0.04);
     --shadow-md: 0 10px 30px -5px rgba(15, 23, 42, 0.08);
     --shadow-lg: 0 20px 40px -10px rgba(0, 168, 150, 0.15);
     
-    --radius-sm: 8px;
+    --radius-sm: 10px;
     --radius-md: 16px;
     --radius-lg: 24px;
 }
@@ -38,7 +38,7 @@ body {
     line-height: 1.6;
 }
 
-/* Top Information & Emergency Bar */
+/* Top Emergency & Info Bar */
 .top-bar {
     background-color: var(--primary);
     color: #E2E8F0;
@@ -51,10 +51,6 @@ body {
     color: #02C39A;
     text-decoration: none;
     font-weight: 600;
-}
-
-.top-bar a:hover {
-    color: #FFFFFF;
 }
 
 /* Navbar */
@@ -80,7 +76,6 @@ body {
     font-weight: 600;
     color: var(--text-main) !important;
     padding: 8px 16px !important;
-    transition: color 0.2s ease;
 }
 
 .nav-link:hover, .nav-link.active {
@@ -183,7 +178,7 @@ body {
     padding: 32px 24px;
     border: 1px solid var(--border-color);
     box-shadow: var(--shadow-sm);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.3s ease;
 }
 
 .card-feature:hover {
@@ -242,34 +237,46 @@ body {
     font-weight: 700;
 }
 
-/* Dashboard Sidebar & Main Structure */
+/* Redesigned Sidebar & Dashboard Framework */
 .dashboard-wrapper {
     display: flex;
     min-height: 100vh;
 }
 
 .sidebar {
-    width: 270px;
+    width: 260px;
     background-color: var(--sidebar-bg);
     color: var(--sidebar-color);
-    padding: 24px 0;
+    padding: 28px 16px;
     flex-shrink: 0;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    border-right: 1px solid #1E293B;
 }
 
 .sidebar-header {
-    padding: 0 24px 24px 24px;
+    padding: 0 12px 24px 12px;
     border-bottom: 1px solid #1E293B;
-    margin-bottom: 16px;
+    margin-bottom: 24px;
 }
 
 .sidebar-header h5 {
     color: #FFFFFF;
     margin: 0;
     font-weight: 800;
-    font-size: 1.25rem;
+    font-size: 1.35rem;
+    letter-spacing: -0.5px;
+}
+
+.sidebar-section-label {
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: #475569;
+    text-transform: uppercase;
+    padding: 0 12px;
+    margin-bottom: 12px;
 }
 
 .sidebar-nav {
@@ -278,26 +285,41 @@ body {
     margin: 0;
 }
 
+.sidebar-nav li {
+    margin-bottom: 6px;
+}
+
 .sidebar-nav li a {
     display: flex;
     align-items: center;
-    padding: 14px 24px;
+    padding: 12px 16px;
     color: var(--sidebar-color);
     text-decoration: none;
     font-weight: 600;
-    border-left: 4px solid transparent;
+    font-size: 0.95rem;
+    border-radius: var(--radius-sm);
     transition: all 0.2s ease;
 }
 
 .sidebar-nav li a i {
-    font-size: 1.25rem;
-    margin-right: 14px;
+    font-size: 1.2rem;
+    margin-right: 12px;
+    transition: transform 0.2s ease;
 }
 
-.sidebar-nav li a:hover, .sidebar-nav li a.active {
-    color: var(--sidebar-active);
-    background-color: var(--sidebar-active-bg);
-    border-left-color: var(--primary-accent);
+.sidebar-nav li a:hover {
+    color: #FFFFFF;
+    background-color: rgba(255, 255, 255, 0.06);
+}
+
+.sidebar-nav li a.active {
+    color: #FFFFFF;
+    background: var(--sidebar-active-bg);
+    box-shadow: 0 4px 12px rgba(0, 168, 150, 0.35);
+}
+
+.sidebar-nav li a.active i {
+    transform: scale(1.1);
 }
 
 .dashboard-content {
@@ -306,7 +328,7 @@ body {
     background-color: #F8FAFC;
 }
 
-/* Dashboard Top Header Bar */
+/* Dashboard Topbar */
 .dashboard-topbar {
     background: white;
     border-radius: var(--radius-md);
@@ -330,7 +352,7 @@ body {
     box-shadow: 0 4px 10px rgba(0, 168, 150, 0.25);
 }
 
-/* Dashboard Hero Greeting Banner */
+/* Welcome Card */
 .dash-welcome-card {
     background: linear-gradient(135deg, #0F2537 0%, #1E3A5F 60%, #00A896 100%);
     color: white;
@@ -342,18 +364,34 @@ body {
     margin-bottom: 32px;
 }
 
-.dash-welcome-card::after {
-    content: '';
-    position: absolute;
-    right: -20px;
-    bottom: -20px;
-    width: 200px;
-    height: 200px;
-    background: radial-gradient(circle, rgba(2, 195, 154, 0.2) 0%, transparent 70%);
-    pointer-events: none;
+/* In-Dashboard Nav Pills */
+.dash-inner-nav {
+    background: white;
+    padding: 8px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+    margin-bottom: 24px;
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
 }
 
-/* Metric KPI Cards */
+.dash-inner-nav .nav-link {
+    border-radius: var(--radius-sm) !important;
+    padding: 10px 20px !important;
+    font-weight: 600;
+    color: var(--text-muted) !important;
+    border: none !important;
+    transition: all 0.2s ease;
+}
+
+.dash-inner-nav .nav-link.active {
+    background-color: var(--primary-accent) !important;
+    color: white !important;
+    box-shadow: 0 4px 10px rgba(0, 168, 150, 0.25);
+}
+
+/* KPI Cards */
 .stat-card {
     background: white;
     border-radius: var(--radius-md);
@@ -400,7 +438,7 @@ body {
 .badge-cancelled { background-color: #FEE2E2; color: #B91C1C; }
 .badge-rescheduled { background-color: #F3E8FF; color: #6B21A8; }
 
-/* Custom Tables */
+/* Tables */
 .table-custom {
     background: white;
     border-radius: var(--radius-md);
@@ -425,32 +463,6 @@ body {
     vertical-align: middle;
 }
 
-/* Timeline Cards */
-.timeline-card {
-    background: white;
-    border-radius: var(--radius-md);
-    border: 1px solid var(--border-color);
-    box-shadow: var(--shadow-sm);
-    padding: 24px;
-    margin-bottom: 20px;
-    transition: all 0.2s ease;
-}
-
-.timeline-card:hover {
-    box-shadow: var(--shadow-md);
-    border-color: var(--primary-accent);
-}
-
-/* Prescription Card */
-.prescription-card {
-    background: white;
-    border-radius: var(--radius-md);
-    border: 1px solid var(--border-color);
-    box-shadow: var(--shadow-sm);
-    padding: 24px;
-    margin-bottom: 16px;
-}
-
 /* Footer & Toasts */
 footer {
     background-color: var(--primary);
@@ -468,11 +480,6 @@ footer h5 {
 footer a {
     color: #94A3B8;
     text-decoration: none;
-    transition: color 0.2s ease;
-}
-
-footer a:hover {
-    color: #02C39A;
 }
 
 #toast-container {

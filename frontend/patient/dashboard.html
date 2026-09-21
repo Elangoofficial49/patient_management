@@ -11,39 +11,42 @@
 <body>
 
     <div class="dashboard-wrapper">
-        <!-- Sidebar -->
+        <!-- Sidebar Navigation -->
         <div class="sidebar">
             <div>
                 <div class="sidebar-header">
                     <a href="/index.html" class="text-decoration-none">
                         <h5><i class="bi bi-heart-pulse-fill text-primary me-2"></i>CarePulse</h5>
                     </a>
-                    <small class="text-muted">Patient Portal</small>
                 </div>
+                
+                <div class="sidebar-section-label">Portal Menu</div>
                 <ul class="sidebar-nav">
-                    <li><a href="#dashboard" class="active" data-bs-toggle="tab" data-bs-target="#dashboard"><i class="bi bi-speedometer2"></i> Dashboard</a></li>
-                    <li><a href="#profile" data-bs-toggle="tab" data-bs-target="#profile"><i class="bi bi-person-badge"></i> My Profile</a></li>
-                    <li><a href="#doctors" data-bs-toggle="tab" data-bs-target="#doctors"><i class="bi bi-search"></i> Find Doctor</a></li>
-                    <li><a href="#appointments" data-bs-toggle="tab" data-bs-target="#appointments"><i class="bi bi-calendar-check"></i> Appointments</a></li>
+                    <li><a href="#dashboard" class="active" data-bs-toggle="tab" data-bs-target="#dashboard"><i class="bi bi-grid-1x2-fill"></i> Dashboard</a></li>
                     <li><a href="#records" data-bs-toggle="tab" data-bs-target="#records"><i class="bi bi-journal-medical"></i> Medical Records</a></li>
-                    <li><a href="#prescriptions" data-bs-toggle="tab" data-bs-target="#prescriptions"><i class="bi bi-capsule"></i> Prescriptions</a></li>
-                    <li><a href="#notifications" data-bs-toggle="tab" data-bs-target="#notifications"><i class="bi bi-bell"></i> Notifications</a></li>
+                    <li><a href="#notifications" data-bs-toggle="tab" data-bs-target="#notifications"><i class="bi bi-bell-fill"></i> Notifications</a></li>
+                </ul>
+
+                <div class="sidebar-section-label mt-4">Account</div>
+                <ul class="sidebar-nav">
+                    <li><a href="#profile" data-bs-toggle="tab" data-bs-target="#profile"><i class="bi bi-person-circle"></i> My Profile</a></li>
                 </ul>
             </div>
-            <div class="p-3">
-                <a href="#" onclick="handleLogout()" class="btn btn-outline-danger w-100 fw-bold"><i class="bi bi-box-arrow-left me-2"></i> Sign Out</a>
+            
+            <div>
+                <button onclick="handleLogout()" class="btn btn-outline-danger w-100 fw-bold py-2"><i class="bi bi-box-arrow-left me-2"></i> Sign Out</button>
             </div>
         </div>
 
-        <!-- Main Content -->
+        <!-- Main Content Surface -->
         <div class="dashboard-content">
-            <!-- Top Navigation Header -->
+            <!-- Top Header Bar -->
             <div class="dashboard-topbar d-flex justify-content-between align-items-center">
                 <div>
                     <span class="badge bg-light-primary text-primary fw-bold px-3 py-2 rounded-pill mb-1">
-                        <i class="bi bi-shield-check me-1"></i> Patient Account
+                        <i class="bi bi-shield-check me-1"></i> Patient Care Portal
                     </span>
-                    <h5 class="fw-bold mb-0">Patient Clinical Care Portal</h5>
+                    <h5 class="fw-bold mb-0">Patient Workspace</h5>
                 </div>
                 <div class="d-flex align-items-center gap-3">
                     <a href="/index.html" class="btn btn-sm btn-outline-secondary d-none d-md-inline-block"><i class="bi bi-house me-1"></i> Hospital Home</a>
@@ -52,23 +55,19 @@
                         <div class="user-avatar-pill" id="avatarPill">P</div>
                         <div class="d-none d-sm-block text-start">
                             <h6 class="fw-bold mb-0 small" id="patientNameHeader">Patient</h6>
-                            <small class="text-muted" style="font-size: 0.75rem;">Verified Patient</small>
+                            <small class="text-muted" style="font-size: 0.75rem;">Verified Account</small>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="tab-content">
-                <!-- Dashboard Tab -->
+                <!-- Dashboard Main Tab Pane -->
                 <div class="tab-pane fade show active" id="dashboard">
-                    <!-- Welcome Banner -->
+                    <!-- Welcome Hero Card -->
                     <div class="dash-welcome-card">
                         <h2 class="fw-bold mb-2">Welcome Back, <span id="patientNameSpan">Patient</span>! 👋</h2>
-                        <p class="mb-3 text-light">Access your consultations, medical diagnoses, digital prescriptions, and doctor schedules all in one place.</p>
-                        <div class="d-flex flex-wrap gap-2">
-                            <button class="btn btn-light text-primary fw-bold" onclick="switchToTab('#doctors')"><i class="bi bi-calendar-plus me-1"></i> Book New Appointment</button>
-                            <button class="btn btn-outline-light" onclick="switchToTab('#records')"><i class="bi bi-file-earmark-medical me-1"></i> View Records</button>
-                        </div>
+                        <p class="mb-3 text-light">Manage your doctor appointments, search specialists, and view digital prescriptions directly below.</p>
                     </div>
 
                     <!-- Metrics Grid -->
@@ -87,7 +86,7 @@
                                 <div class="stat-icon bg-light-success me-3"><i class="bi bi-clock-history"></i></div>
                                 <div>
                                     <h3 class="fw-bold mb-0" id="statUpcomingApts">0</h3>
-                                    <small class="text-muted">Upcoming</small>
+                                    <small class="text-muted">Upcoming Visits</small>
                                 </div>
                             </div>
                         </div>
@@ -105,51 +104,97 @@
                                 <div class="stat-icon bg-light-danger me-3"><i class="bi bi-capsule"></i></div>
                                 <div>
                                     <h3 class="fw-bold mb-0" id="statPrescriptionsCount">0</h3>
-                                    <small class="text-muted">Prescriptions</small>
+                                    <small class="text-muted">Active Prescriptions</small>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Quick Action Shortcuts -->
-                    <div class="card border-0 shadow-sm p-4 mb-4">
-                        <h5 class="fw-bold mb-3">Quick Actions</h5>
-                        <div class="row g-3">
-                            <div class="col-md-3">
-                                <button class="btn btn-outline-primary w-100 py-3 text-start d-flex align-items-center" onclick="switchToTab('#doctors')">
-                                    <i class="bi bi-search fs-3 me-3 text-primary"></i>
+                    <!-- Embedded Inner Dashboard Nav Tabs -->
+                    <ul class="nav nav-pills dash-inner-nav mb-4" id="dashInnerTabs" role="tablist">
+                        <li class="nav-item">
+                            <button class="nav-link active" id="tab-apts-btn" data-bs-toggle="pill" data-bs-target="#dash-apts-pane" type="button"><i class="bi bi-calendar-check me-2"></i> My Appointments</button>
+                        </li>
+                        <li class="nav-item">
+                            <button class="nav-link" id="tab-docs-btn" data-bs-toggle="pill" data-bs-target="#dash-docs-pane" type="button"><i class="bi bi-search me-2"></i> Find Specialist Doctor</button>
+                        </li>
+                        <li class="nav-item">
+                            <button class="nav-link" id="tab-rx-btn" data-bs-toggle="pill" data-bs-target="#dash-rx-pane" type="button"><i class="bi bi-capsule me-2"></i> Digital Prescriptions</button>
+                        </li>
+                    </ul>
+
+                    <!-- Inner Dashboard Tab Panes -->
+                    <div class="tab-content" id="dashInnerContent">
+                        <!-- Appointments Section Pane -->
+                        <div class="tab-pane fade show active" id="dash-apts-pane">
+                            <div class="card shadow-sm border-0 p-4">
+                                <div class="d-flex justify-content-between align-items-center mb-4">
                                     <div>
-                                        <strong class="d-block">Find Specialist</strong>
-                                        <small class="text-muted">Search by department</small>
+                                        <h5 class="fw-bold mb-0">Scheduled Doctor Appointments</h5>
+                                        <small class="text-muted">View and manage your upcoming doctor visits</small>
                                     </div>
-                                </button>
+                                    <button class="btn btn-primary" onclick="switchToInnerTab('#tab-docs-btn')"><i class="bi bi-calendar-plus me-1"></i> Book New Appointment</button>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table table-hover align-middle table-custom">
+                                        <thead>
+                                            <tr>
+                                                <th>Code</th>
+                                                <th>Specialist Doctor</th>
+                                                <th>Date</th>
+                                                <th>Time</th>
+                                                <th>Reason</th>
+                                                <th>Status</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="appointmentsTableBody"></tbody>
+                                    </table>
+                                </div>
                             </div>
-                            <div class="col-md-3">
-                                <button class="btn btn-outline-primary w-100 py-3 text-start d-flex align-items-center" onclick="switchToTab('#appointments')">
-                                    <i class="bi bi-calendar-check fs-3 me-3 text-primary"></i>
-                                    <div>
-                                        <strong class="d-block">My Appointments</strong>
-                                        <small class="text-muted">View upcoming slots</small>
+                        </div>
+
+                        <!-- Find Doctor Section Pane -->
+                        <div class="tab-pane fade" id="dash-docs-pane">
+                            <div class="card shadow-sm border-0 p-4 mb-4">
+                                <h5 class="fw-bold mb-3">Find & Book Specialist Doctors</h5>
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <input type="text" id="doctorSearch" class="form-control form-control-lg" placeholder="Search doctor by name or specialty..." onkeyup="loadDoctors()">
                                     </div>
-                                </button>
+                                    <div class="col-md-4">
+                                        <select id="deptFilter" class="form-select form-select-lg" onchange="loadDoctors()">
+                                            <option value="">All Clinical Departments</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button class="btn btn-primary btn-lg w-100" onclick="loadDoctors()"><i class="bi bi-search me-1"></i> Search</button>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-md-3">
-                                <button class="btn btn-outline-primary w-100 py-3 text-start d-flex align-items-center" onclick="switchToTab('#prescriptions')">
-                                    <i class="bi bi-capsule fs-3 me-3 text-primary"></i>
-                                    <div>
-                                        <strong class="d-block">Digital Rx</strong>
-                                        <small class="text-muted">Active medicines</small>
-                                    </div>
-                                </button>
-                            </div>
-                            <div class="col-md-3">
-                                <a href="tel:18002273785" class="btn btn-outline-danger w-100 py-3 text-start d-flex align-items-center">
-                                    <i class="bi bi-telephone-out fs-3 me-3 text-danger"></i>
-                                    <div>
-                                        <strong class="d-block text-danger">24/7 ER Trauma</strong>
-                                        <small class="text-muted">Call emergency</small>
-                                    </div>
-                                </a>
+                            <div class="row" id="doctorsListContainer"></div>
+                        </div>
+
+                        <!-- Prescriptions Section Pane -->
+                        <div class="tab-pane fade" id="dash-rx-pane">
+                            <div class="card shadow-sm border-0 p-4">
+                                <h5 class="fw-bold mb-3">Active Digital Prescriptions</h5>
+                                <div class="table-responsive">
+                                    <table class="table table-hover align-middle table-custom">
+                                        <thead>
+                                            <tr>
+                                                <th>Medicine Name</th>
+                                                <th>Dosage</th>
+                                                <th>Frequency</th>
+                                                <th>Duration</th>
+                                                <th>Instructions</th>
+                                                <th>Prescribed By</th>
+                                                <th>Date</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="prescriptionsTableBody"></tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -209,87 +254,10 @@
                     </div>
                 </div>
 
-                <!-- Find Doctor Tab -->
-                <div class="tab-pane fade" id="doctors">
-                    <div class="card shadow-sm border-0 p-4 mb-4">
-                        <h4 class="fw-bold mb-3">Find & Book Specialist Doctors</h4>
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <input type="text" id="doctorSearch" class="form-control form-control-lg" placeholder="Search doctor by name or specialty..." onkeyup="loadDoctors()">
-                            </div>
-                            <div class="col-md-4">
-                                <select id="deptFilter" class="form-select form-select-lg" onchange="loadDoctors()">
-                                    <option value="">All Clinical Departments</option>
-                                </select>
-                            </div>
-                            <div class="col-md-2">
-                                <button class="btn btn-primary btn-lg w-100" onclick="loadDoctors()"><i class="bi bi-search me-1"></i> Search</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" id="doctorsListContainer"></div>
-                </div>
-
-                <!-- Appointments Tab -->
-                <div class="tab-pane fade" id="appointments">
-                    <div class="card shadow-sm border-0">
-                        <div class="card-body p-4">
-                            <div class="d-flex justify-content-between align-items-center mb-4">
-                                <div>
-                                    <h4 class="fw-bold mb-0">My Consultations & Appointments</h4>
-                                    <small class="text-muted">Track your scheduled doctor visits</small>
-                                </div>
-                                <button class="btn btn-primary" onclick="switchToTab('#doctors')"><i class="bi bi-calendar-plus me-1"></i> Book Appointment</button>
-                            </div>
-                            <div class="table-responsive">
-                                <table class="table table-hover align-middle table-custom">
-                                    <thead>
-                                        <tr>
-                                            <th>Code</th>
-                                            <th>Specialist Doctor</th>
-                                            <th>Date</th>
-                                            <th>Time</th>
-                                            <th>Reason</th>
-                                            <th>Status</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="appointmentsTableBody"></tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
                 <!-- Medical Records Tab -->
                 <div class="tab-pane fade" id="records">
                     <h4 class="fw-bold mb-3">Medical History & Clinical Diagnoses</h4>
                     <div id="recordsContainer"></div>
-                </div>
-
-                <!-- Prescriptions Tab -->
-                <div class="tab-pane fade" id="prescriptions">
-                    <div class="card shadow-sm border-0">
-                        <div class="card-body p-4">
-                            <h4 class="fw-bold mb-3">Digital Prescriptions</h4>
-                            <div class="table-responsive">
-                                <table class="table table-hover align-middle table-custom">
-                                    <thead>
-                                        <tr>
-                                            <th>Medicine Name</th>
-                                            <th>Dosage</th>
-                                            <th>Frequency</th>
-                                            <th>Duration</th>
-                                            <th>Instructions</th>
-                                            <th>Prescribed By</th>
-                                            <th>Date</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="prescriptionsTableBody"></tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
                 <!-- Notifications Tab -->
@@ -347,5 +315,11 @@
     <script src="/js/api.js"></script>
     <script src="/js/auth.js"></script>
     <script src="/js/patient.js"></script>
+    <script>
+        function switchToInnerTab(buttonId) {
+            const btn = document.querySelector(buttonId);
+            if (btn) btn.click();
+        }
+    </script>
 </body>
 </html>
