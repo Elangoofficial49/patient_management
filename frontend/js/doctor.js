@@ -26,9 +26,13 @@ function initDoctorPortal() {
 }
 
 function switchToDocTab(targetSelector) {
-    const link = document.querySelector(`.sidebar-nav a[data-bs-target="${targetSelector}"]`) || document.querySelector(`.sidebar-nav a[href="${targetSelector}"]`);
+    const link = document.querySelector(`[data-bs-target="${targetSelector}"]`) || document.querySelector(`[href="${targetSelector}"]`);
     if (link) {
-        link.click();
+        if (window.bootstrap && bootstrap.Tab) {
+            bootstrap.Tab.getOrCreateInstance(link).show();
+        } else {
+            link.click();
+        }
     }
 }
 

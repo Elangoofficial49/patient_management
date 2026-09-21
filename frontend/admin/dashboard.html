@@ -3,222 +3,247 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard - CarePulse Hospital</title>
+    <title>Admin Dashboard - CarePulse Hospital AI</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 
-    <div class="dashboard-wrapper">
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <div>
-                <div class="sidebar-header">
-                    <a href="/index.html" class="text-decoration-none">
-                        <h5><i class="bi bi-heart-pulse-fill text-primary me-2"></i>CarePulse</h5>
-                    </a>
-                    <small class="text-muted">Admin Control Center</small>
-                </div>
-                <ul class="sidebar-nav">
-                    <li><a href="#adminDashboard" class="active" data-bs-toggle="tab" data-bs-target="#adminDashboard"><i class="bi bi-speedometer2"></i> Executive Overview</a></li>
-                    <li><a href="#adminDoctors" data-bs-toggle="tab" data-bs-target="#adminDoctors"><i class="bi bi-person-badge"></i> Doctors Directory</a></li>
-                    <li><a href="#adminDepartments" data-bs-toggle="tab" data-bs-target="#adminDepartments"><i class="bi bi-building"></i> Departments</a></li>
-                    <li><a href="#adminPatients" data-bs-toggle="tab" data-bs-target="#adminPatients"><i class="bi bi-people"></i> Patient Registry</a></li>
-                    <li><a href="#adminAppointments" data-bs-toggle="tab" data-bs-target="#adminAppointments"><i class="bi bi-calendar-range"></i> Master Appointments</a></li>
-                    <li><a href="#adminUsers" data-bs-toggle="tab" data-bs-target="#adminUsers"><i class="bi bi-shield-lock"></i> Security & Users</a></li>
-                </ul>
-            </div>
-            <div class="p-3">
-                <a href="#" onclick="handleLogout()" class="btn btn-outline-danger w-100 fw-bold"><i class="bi bi-box-arrow-left me-2"></i> Sign Out</a>
-            </div>
-        </div>
-
-        <!-- Main Content -->
-        <div class="dashboard-content">
-            <!-- Top Navigation Header -->
-            <div class="dashboard-topbar d-flex justify-content-between align-items-center">
-                <div>
-                    <span class="badge bg-danger text-white fw-bold px-3 py-2 rounded-pill mb-1">
-                        <i class="bi bi-shield-lock-fill me-1"></i> Hospital Administrator
-                    </span>
-                    <h5 class="fw-bold mb-0">System Executive Control Center</h5>
-                </div>
-                <div class="d-flex align-items-center gap-3">
-                    <button class="btn btn-primary btn-sm" onclick="openAddDoctorModal()"><i class="bi bi-person-plus me-1"></i> Onboard New Doctor</button>
-                    <div class="d-flex align-items-center gap-2 ps-2 border-start">
-                        <div class="user-avatar-pill bg-dark" id="admAvatarPill">A</div>
-                        <div class="d-none d-sm-block text-start">
-                            <h6 class="fw-bold mb-0 small" id="adminNameSpan">Administrator</h6>
-                            <small class="text-muted" style="font-size: 0.75rem;">Full Control</small>
-                        </div>
-                    </div>
-                </div>
+    <div class="portal-container">
+        <!-- Floating Glassmorphic Top Navigation Header -->
+        <header class="portal-floating-nav d-flex flex-wrap justify-content-between align-items-center gap-3">
+            <div class="d-flex align-items-center gap-3">
+                <a href="/index.html" class="portal-brand d-flex align-items-center">
+                    <i class="bi bi-heart-pulse-fill text-primary-accent me-2"></i>CarePulse
+                </a>
+                <span class="ai-badge">
+                    <span class="ai-pulse-dot"></span> Executive Control Center
+                </span>
             </div>
 
-            <div class="tab-content">
-                <!-- Dashboard Tab -->
-                <div class="tab-pane fade show active" id="adminDashboard">
-                    <!-- Welcome Hero Banner -->
-                    <div class="dash-welcome-card">
-                        <h2 class="fw-bold mb-2">Executive Hospital Operations</h2>
-                        <p class="mb-3 text-light">Monitor hospital metrics, manage physician rosters, oversee clinical departments, and audit security.</p>
-                        <div class="d-flex flex-wrap gap-2">
-                            <button class="btn btn-light text-primary fw-bold" onclick="openAddDoctorModal()"><i class="bi bi-person-plus me-1"></i> Onboard Doctor</button>
-                            <button class="btn btn-outline-light" onclick="openAddDeptModal()"><i class="bi bi-plus-circle me-1"></i> Create Department</button>
-                        </div>
-                    </div>
+            <!-- Floating Navigation Pills -->
+            <ul class="portal-nav-pills nav nav-pills" id="adminPortalTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="a-dash-tab" data-bs-toggle="pill" data-bs-target="#adminDashboard" type="button" role="tab">
+                        <i class="bi bi-speedometer2"></i> Overview
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="a-docs-tab" data-bs-toggle="pill" data-bs-target="#adminDoctors" type="button" role="tab">
+                        <i class="bi bi-person-badge"></i> Doctors
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="a-depts-tab" data-bs-toggle="pill" data-bs-target="#adminDepartments" type="button" role="tab">
+                        <i class="bi bi-building"></i> Departments
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="a-patients-tab" data-bs-toggle="pill" data-bs-target="#adminPatients" type="button" role="tab">
+                        <i class="bi bi-people"></i> Patients
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="a-apts-tab" data-bs-toggle="pill" data-bs-target="#adminAppointments" type="button" role="tab">
+                        <i class="bi bi-calendar-range"></i> Appointments
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="a-users-tab" data-bs-toggle="pill" data-bs-target="#adminUsers" type="button" role="tab">
+                        <i class="bi bi-shield-lock"></i> Security
+                    </button>
+                </li>
+            </ul>
 
-                    <!-- Metrics Grid -->
-                    <div class="row g-4 mb-4">
-                        <div class="col-md-4 col-lg-2">
-                            <div class="stat-card text-center">
-                                <div class="stat-icon bg-light-primary mx-auto mb-2"><i class="bi bi-people"></i></div>
-                                <h3 class="fw-bold mb-0" id="admPatients">0</h3>
-                                <small class="text-muted">Total Patients</small>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-lg-2">
-                            <div class="stat-card text-center">
-                                <div class="stat-icon bg-light-success mx-auto mb-2"><i class="bi bi-person-badge"></i></div>
-                                <h3 class="fw-bold mb-0" id="admDoctors">0</h3>
-                                <small class="text-muted">Doctors</small>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-lg-2">
-                            <div class="stat-card text-center">
-                                <div class="stat-icon bg-light-warning mx-auto mb-2"><i class="bi bi-calendar-event"></i></div>
-                                <h3 class="fw-bold mb-0" id="admApts">0</h3>
-                                <small class="text-muted">Appointments</small>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-lg-2">
-                            <div class="stat-card text-center">
-                                <div class="stat-icon bg-light-danger mx-auto mb-2"><i class="bi bi-clock-history"></i></div>
-                                <h3 class="fw-bold mb-0" id="admPendingApts">0</h3>
-                                <small class="text-muted">Pending Queue</small>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-lg-2">
-                            <div class="stat-card text-center">
-                                <div class="stat-icon bg-light-success mx-auto mb-2"><i class="bi bi-check-circle"></i></div>
-                                <h3 class="fw-bold mb-0" id="admCompletedApts">0</h3>
-                                <small class="text-muted">Completed</small>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-lg-2">
-                            <div class="stat-card text-center">
-                                <div class="stat-icon bg-light-primary mx-auto mb-2"><i class="bi bi-building"></i></div>
-                                <h3 class="fw-bold mb-0" id="admDepts">0</h3>
-                                <small class="text-muted">Departments</small>
+            <!-- Right Actions & User Profile -->
+            <div class="d-flex align-items-center gap-3">
+                <button class="btn btn-sm btn-primary rounded-pill px-3 d-none d-lg-inline-flex align-items-center gap-1" onclick="openAddDoctorModal()">
+                    <i class="bi bi-person-plus me-1"></i> Onboard Doctor
+                </button>
+                <div class="d-flex align-items-center gap-2 ps-2 border-start">
+                    <div class="user-avatar-pill bg-dark" id="admAvatarPill">A</div>
+                    <div class="d-none d-sm-block text-start">
+                        <h6 class="fw-bold mb-0 small" id="adminNameSpan">Administrator</h6>
+                        <small class="text-muted" style="font-size: 0.725rem;">System Control</small>
+                    </div>
+                </div>
+                <button onclick="handleLogout()" class="btn btn-sm btn-outline-secondary rounded-circle p-2" title="Sign Out">
+                    <i class="bi bi-box-arrow-right"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Content Panes -->
+        <div class="tab-content" id="adminPortalTabContent">
+            <!-- Executive Overview Tab Pane -->
+            <div class="tab-pane fade show active" id="adminDashboard" role="tabpanel">
+                <!-- Welcome Hero Banner -->
+                <div class="dash-welcome-card">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div>
+                            <span class="badge bg-white text-dark fw-bold rounded-pill px-3 py-1 mb-2">
+                                <i class="bi bi-shield-lock-fill me-1 text-primary-accent"></i> System Executive Control Center
+                            </span>
+                            <h2 class="fw-bold mb-2">Executive Hospital Operations</h2>
+                            <p class="mb-3 text-light opacity-90">Monitor hospital metrics, manage physician rosters, oversee clinical departments, and audit security.</p>
+                            <div class="d-flex flex-wrap gap-2">
+                                <button class="btn btn-light text-primary fw-bold" onclick="openAddDoctorModal()"><i class="bi bi-person-plus me-1"></i> Onboard Doctor</button>
+                                <button class="btn btn-outline-light" onclick="openAddDeptModal()"><i class="bi bi-plus-circle me-1"></i> Create Department</button>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Doctors Directory Tab -->
-                <div class="tab-pane fade" id="adminDoctors">
-                    <div class="card shadow-sm border-0 p-4">
-                        <div class="d-flex justify-content-between align-items-center mb-4">
-                            <div>
-                                <h4 class="fw-bold mb-0">Specialist Physicians Directory</h4>
-                                <small class="text-muted">Manage active medical staff and onboarding</small>
-                            </div>
-                            <button class="btn btn-primary" onclick="openAddDoctorModal()"><i class="bi bi-person-plus me-1"></i> Onboard Doctor</button>
+                <!-- Metrics Grid -->
+                <div class="row g-4 mb-4">
+                    <div class="col-md-4 col-lg-2">
+                        <div class="stat-card text-center">
+                            <div class="stat-icon bg-light-primary mx-auto mb-2"><i class="bi bi-people"></i></div>
+                            <h3 class="fw-bold mb-0" id="admPatients">0</h3>
+                            <small class="text-muted">Total Patients</small>
                         </div>
-                        <div class="table-responsive">
-                            <table class="table table-hover align-middle table-custom">
-                                <thead>
-                                    <tr>
-                                        <th>Code</th>
-                                        <th>Doctor Name</th>
-                                        <th>Specialty</th>
-                                        <th>Department</th>
-                                        <th>Fee ($)</th>
-                                        <th>Status</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="admDoctorsTableBody"></tbody>
-                            </table>
+                    </div>
+                    <div class="col-md-4 col-lg-2">
+                        <div class="stat-card text-center">
+                            <div class="stat-icon bg-light-success mx-auto mb-2"><i class="bi bi-person-badge"></i></div>
+                            <h3 class="fw-bold mb-0" id="admDoctors">0</h3>
+                            <small class="text-muted">Doctors</small>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-lg-2">
+                        <div class="stat-card text-center">
+                            <div class="stat-icon bg-light-warning mx-auto mb-2"><i class="bi bi-calendar-event"></i></div>
+                            <h3 class="fw-bold mb-0" id="admApts">0</h3>
+                            <small class="text-muted">Appointments</small>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-lg-2">
+                        <div class="stat-card text-center">
+                            <div class="stat-icon bg-light-danger mx-auto mb-2"><i class="bi bi-clock-history"></i></div>
+                            <h3 class="fw-bold mb-0" id="admPendingApts">0</h3>
+                            <small class="text-muted">Pending Queue</small>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-lg-2">
+                        <div class="stat-card text-center">
+                            <div class="stat-icon bg-light-success mx-auto mb-2"><i class="bi bi-check-circle"></i></div>
+                            <h3 class="fw-bold mb-0" id="admCompletedApts">0</h3>
+                            <small class="text-muted">Completed</small>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-lg-2">
+                        <div class="stat-card text-center">
+                            <div class="stat-icon bg-light-primary mx-auto mb-2"><i class="bi bi-building"></i></div>
+                            <h3 class="fw-bold mb-0" id="admDepts">0</h3>
+                            <small class="text-muted">Departments</small>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <!-- Departments Tab -->
-                <div class="tab-pane fade" id="adminDepartments">
-                    <div class="card shadow-sm border-0 p-4">
-                        <div class="d-flex justify-content-between align-items-center mb-4">
-                            <div>
-                                <h4 class="fw-bold mb-0">Clinical Departments</h4>
-                                <small class="text-muted">Hospital operational units and specialties</small>
-                            </div>
-                            <button class="btn btn-primary" onclick="openAddDeptModal()"><i class="bi bi-plus-circle me-1"></i> Add Department</button>
+            <!-- Doctors Directory Tab Pane -->
+            <div class="tab-pane fade" id="adminDoctors" role="tabpanel">
+                <div class="card shadow-sm border-0 p-4">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <div>
+                            <h4 class="fw-bold mb-0">Specialist Physicians Directory</h4>
+                            <small class="text-muted">Manage active medical staff and onboarding</small>
                         </div>
-                        <div class="row g-4" id="admDeptsContainer"></div>
+                        <button class="btn btn-primary" onclick="openAddDoctorModal()"><i class="bi bi-person-plus me-1"></i> Onboard Doctor</button>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle table-custom">
+                            <thead>
+                                <tr>
+                                    <th>Code</th>
+                                    <th>Doctor Name</th>
+                                    <th>Specialty</th>
+                                    <th>Department</th>
+                                    <th>Fee ($)</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admDoctorsTableBody"></tbody>
+                        </table>
                     </div>
                 </div>
+            </div>
 
-                <!-- Patients Registry Tab -->
-                <div class="tab-pane fade" id="adminPatients">
-                    <div class="card shadow-sm border-0 p-4">
-                        <h4 class="fw-bold mb-3">Registered Patients Registry</h4>
-                        <div class="table-responsive">
-                            <table class="table table-hover align-middle table-custom">
-                                <thead>
-                                    <tr>
-                                        <th>Patient Code</th>
-                                        <th>Full Name</th>
-                                        <th>Email</th>
-                                        <th>Phone</th>
-                                        <th>Blood Group</th>
-                                        <th>Gender</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="admPatientsTableBody"></tbody>
-                            </table>
+            <!-- Departments Tab Pane -->
+            <div class="tab-pane fade" id="adminDepartments" role="tabpanel">
+                <div class="card shadow-sm border-0 p-4">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <div>
+                            <h4 class="fw-bold mb-0">Clinical Departments</h4>
+                            <small class="text-muted">Hospital operational units and specialties</small>
                         </div>
+                        <button class="btn btn-primary" onclick="openAddDeptModal()"><i class="bi bi-plus-circle me-1"></i> Add Department</button>
+                    </div>
+                    <div class="row g-4" id="admDeptsContainer"></div>
+                </div>
+            </div>
+
+            <!-- Patients Registry Tab Pane -->
+            <div class="tab-pane fade" id="adminPatients" role="tabpanel">
+                <div class="card shadow-sm border-0 p-4">
+                    <h4 class="fw-bold mb-3">Registered Patients Registry</h4>
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle table-custom">
+                            <thead>
+                                <tr>
+                                    <th>Patient Code</th>
+                                    <th>Full Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Blood Group</th>
+                                    <th>Gender</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admPatientsTableBody"></tbody>
+                        </table>
                     </div>
                 </div>
+            </div>
 
-                <!-- Appointments Log Tab -->
-                <div class="tab-pane fade" id="adminAppointments">
-                    <div class="card shadow-sm border-0 p-4">
-                        <h4 class="fw-bold mb-3">Hospital Master Appointment Log</h4>
-                        <div class="table-responsive">
-                            <table class="table table-hover align-middle table-custom">
-                                <thead>
-                                    <tr>
-                                        <th>Code</th>
-                                        <th>Patient</th>
-                                        <th>Doctor</th>
-                                        <th>Date</th>
-                                        <th>Time</th>
-                                        <th>Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="admAptsTableBody"></tbody>
-                            </table>
-                        </div>
+            <!-- Appointments Log Tab Pane -->
+            <div class="tab-pane fade" id="adminAppointments" role="tabpanel">
+                <div class="card shadow-sm border-0 p-4">
+                    <h4 class="fw-bold mb-3">Hospital Master Appointment Log</h4>
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle table-custom">
+                            <thead>
+                                <tr>
+                                    <th>Code</th>
+                                    <th>Patient</th>
+                                    <th>Doctor</th>
+                                    <th>Date</th>
+                                    <th>Time</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admAptsTableBody"></tbody>
+                        </table>
                     </div>
                 </div>
+            </div>
 
-                <!-- System Users Tab -->
-                <div class="tab-pane fade" id="adminUsers">
-                    <div class="card shadow-sm border-0 p-4">
-                        <h4 class="fw-bold mb-3">Security & System Users Audit</h4>
-                        <div class="table-responsive">
-                            <table class="table table-hover align-middle table-custom">
-                                <thead>
-                                    <tr>
-                                        <th>Username</th>
-                                        <th>Email</th>
-                                        <th>System Role</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="admUsersTableBody"></tbody>
-                            </table>
-                        </div>
+            <!-- System Users Tab Pane -->
+            <div class="tab-pane fade" id="adminUsers" role="tabpanel">
+                <div class="card shadow-sm border-0 p-4">
+                    <h4 class="fw-bold mb-3">Security & System Users Audit</h4>
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle table-custom">
+                            <thead>
+                                <tr>
+                                    <th>Username</th>
+                                    <th>Email</th>
+                                    <th>System Role</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admUsersTableBody"></tbody>
+                        </table>
                     </div>
                 </div>
             </div>

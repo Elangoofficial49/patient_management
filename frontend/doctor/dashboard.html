@@ -3,188 +3,202 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Doctor Portal - CarePulse Hospital</title>
+    <title>Doctor Portal - CarePulse Hospital AI</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 
-    <div class="dashboard-wrapper">
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <div>
-                <div class="sidebar-header">
-                    <a href="/index.html" class="text-decoration-none">
-                        <h5><i class="bi bi-heart-pulse-fill text-primary me-2"></i>CarePulse</h5>
-                    </a>
-                    <small class="text-muted">Doctor Portal</small>
-                </div>
-                <ul class="sidebar-nav">
-                    <li><a href="#dashboard" class="active" data-bs-toggle="tab" data-bs-target="#dashboard"><i class="bi bi-speedometer2"></i> Dashboard</a></li>
-                    <li><a href="#todaySchedule" data-bs-toggle="tab" data-bs-target="#todaySchedule"><i class="bi bi-calendar-day"></i> Today's Schedule</a></li>
-                    <li><a href="#allAppointments" data-bs-toggle="tab" data-bs-target="#allAppointments"><i class="bi bi-calendar-range"></i> All Appointments</a></li>
-                    <li><a href="#doctorProfile" data-bs-toggle="tab" data-bs-target="#doctorProfile"><i class="bi bi-person-badge"></i> My Profile</a></li>
-                </ul>
-            </div>
-            <div class="p-3">
-                <a href="#" onclick="handleLogout()" class="btn btn-outline-danger w-100 fw-bold"><i class="bi bi-box-arrow-left me-2"></i> Sign Out</a>
-            </div>
-        </div>
-
-        <!-- Main Content -->
-        <div class="dashboard-content">
-            <!-- Top Navigation Header -->
-            <div class="dashboard-topbar d-flex justify-content-between align-items-center">
-                <div>
-                    <span class="badge bg-light-success text-success fw-bold px-3 py-2 rounded-pill mb-1">
-                        <i class="bi bi-check-circle-fill me-1"></i> Specialist Physician
-                    </span>
-                    <h5 class="fw-bold mb-0">Doctor Clinical Workstation</h5>
-                </div>
-                <div class="d-flex align-items-center gap-3">
-                    <a href="/index.html" class="btn btn-sm btn-outline-secondary d-none d-md-inline-block"><i class="bi bi-house me-1"></i> Hospital Home</a>
-                    <div class="d-flex align-items-center gap-2 ps-2 border-start">
-                        <div class="user-avatar-pill" id="docAvatarPill">D</div>
-                        <div class="d-none d-sm-block text-start">
-                            <h6 class="fw-bold mb-0 small" id="docNameHeader">Doctor</h6>
-                            <small class="text-muted" style="font-size: 0.75rem;">Attending Physician</small>
-                        </div>
-                    </div>
-                </div>
+    <div class="portal-container">
+        <!-- Floating Glassmorphic Top Navigation Header -->
+        <header class="portal-floating-nav d-flex flex-wrap justify-content-between align-items-center gap-3">
+            <div class="d-flex align-items-center gap-3">
+                <a href="/index.html" class="portal-brand d-flex align-items-center">
+                    <i class="bi bi-heart-pulse-fill text-primary-accent me-2"></i>CarePulse
+                </a>
+                <span class="ai-badge">
+                    <span class="ai-pulse-dot"></span> Clinical Workstation
+                </span>
             </div>
 
-            <div class="tab-content">
-                <!-- Dashboard Tab -->
-                <div class="tab-pane fade show active" id="dashboard">
-                    <!-- Doctor Greeting Banner -->
-                    <div class="dash-welcome-card">
-                        <h2 class="fw-bold mb-2">Welcome, <span id="doctorNameSpan">Doctor</span>! 🩺</h2>
-                        <p class="mb-3 text-light">Manage your clinical patient queue, review diagnoses, and issue digital prescriptions.</p>
-                        <div class="d-flex flex-wrap gap-2">
-                            <button class="btn btn-light text-primary fw-bold" onclick="switchToDocTab('#todaySchedule')"><i class="bi bi-clock me-1"></i> View Today's Schedule</button>
-                            <button class="btn btn-outline-light" onclick="switchToDocTab('#allAppointments')"><i class="bi bi-list-check me-1"></i> Master Consultations Log</button>
-                        </div>
-                    </div>
+            <!-- Floating Navigation Pills -->
+            <ul class="portal-nav-pills nav nav-pills" id="doctorPortalTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="d-dash-tab" data-bs-toggle="pill" data-bs-target="#dashboard" type="button" role="tab">
+                        <i class="bi bi-speedometer2"></i> Dashboard
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="d-today-tab" data-bs-toggle="pill" data-bs-target="#todaySchedule" type="button" role="tab">
+                        <i class="bi bi-calendar-day"></i> Today's Schedule
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="d-all-tab" data-bs-toggle="pill" data-bs-target="#allAppointments" type="button" role="tab">
+                        <i class="bi bi-calendar-range"></i> All Appointments
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="d-profile-tab" data-bs-toggle="pill" data-bs-target="#doctorProfile" type="button" role="tab">
+                        <i class="bi bi-person-badge"></i> My Profile
+                    </button>
+                </li>
+            </ul>
 
-                    <!-- Metrics Grid -->
-                    <div class="row g-4 mb-4">
-                        <div class="col-md-3">
-                            <div class="stat-card d-flex align-items-center">
-                                <div class="stat-icon bg-light-primary me-3"><i class="bi bi-calendar-check"></i></div>
-                                <div>
-                                    <h3 class="fw-bold mb-0" id="docTodayApts">0</h3>
-                                    <small class="text-muted">Today's Queue</small>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="stat-card d-flex align-items-center">
-                                <div class="stat-icon bg-light-warning me-3"><i class="bi bi-hourglass-split"></i></div>
-                                <div>
-                                    <h3 class="fw-bold mb-0" id="docUpcomingApts">0</h3>
-                                    <small class="text-muted">Upcoming</small>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="stat-card d-flex align-items-center">
-                                <div class="stat-icon bg-light-success me-3"><i class="bi bi-check2-square"></i></div>
-                                <div>
-                                    <h3 class="fw-bold mb-0" id="docCompletedApts">0</h3>
-                                    <small class="text-muted">Completed</small>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="stat-card d-flex align-items-center">
-                                <div class="stat-icon bg-light-danger me-3"><i class="bi bi-people"></i></div>
-                                <div>
-                                    <h3 class="fw-bold mb-0" id="docTotalPatients">0</h3>
-                                    <small class="text-muted">Total Patients</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Today's Schedule Preview -->
-                    <div class="card border-0 shadow-sm p-4">
-                        <h5 class="fw-bold mb-3"><i class="bi bi-clock-history text-primary me-2"></i> Today's Priority Consultations</h5>
-                        <div id="dashboardTodayScheduleContainer"></div>
+            <!-- Right Actions & User Profile -->
+            <div class="d-flex align-items-center gap-3">
+                <div class="d-flex align-items-center gap-2 ps-2 border-start">
+                    <div class="user-avatar-pill" id="docAvatarPill">D</div>
+                    <div class="d-none d-sm-block text-start">
+                        <h6 class="fw-bold mb-0 small" id="docNameHeader">Doctor</h6>
+                        <small class="text-muted" style="font-size: 0.725rem;">Attending Physician</small>
                     </div>
                 </div>
+                <button onclick="handleLogout()" class="btn btn-sm btn-outline-secondary rounded-circle p-2" title="Sign Out">
+                    <i class="bi bi-box-arrow-right"></i>
+                </button>
+            </div>
+        </header>
 
-                <!-- Today Schedule Tab -->
-                <div class="tab-pane fade" id="todaySchedule">
-                    <div class="card shadow-sm border-0 p-4">
-                        <h4 class="fw-bold mb-3">Today's Patient Schedule</h4>
-                        <div id="fullTodayScheduleContainer"></div>
-                    </div>
-                </div>
-
-                <!-- All Appointments Tab -->
-                <div class="tab-pane fade" id="allAppointments">
-                    <div class="card shadow-sm border-0 p-4">
-                        <h4 class="fw-bold mb-3">Master Patient Appointment Log</h4>
-                        <div class="table-responsive">
-                            <table class="table table-hover align-middle table-custom">
-                                <thead>
-                                    <tr>
-                                        <th>Code</th>
-                                        <th>Patient Name</th>
-                                        <th>Date</th>
-                                        <th>Time</th>
-                                        <th>Reason for Visit</th>
-                                        <th>Status</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="docAllAptsTableBody"></tbody>
-                            </table>
+        <!-- Main Content Panes -->
+        <div class="tab-content" id="doctorPortalTabContent">
+            <!-- Dashboard Tab Pane -->
+            <div class="tab-pane fade show active" id="dashboard" role="tabpanel">
+                <!-- Doctor Greeting Banner -->
+                <div class="dash-welcome-card">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div>
+                            <span class="badge bg-white text-dark fw-bold rounded-pill px-3 py-1 mb-2">
+                                <i class="bi bi-check-circle-fill me-1 text-success"></i> Specialist Physician Console
+                            </span>
+                            <h2 class="fw-bold mb-2">Welcome, <span id="doctorNameSpan">Doctor</span>! 🩺</h2>
+                            <p class="mb-3 text-light opacity-90">Manage your clinical patient queue, review diagnoses, and issue digital prescriptions.</p>
+                            <div class="d-flex flex-wrap gap-2">
+                                <button class="btn btn-light text-primary fw-bold" onclick="switchToDocTab('#todaySchedule')"><i class="bi bi-clock me-1"></i> View Today's Schedule</button>
+                                <button class="btn btn-outline-light" onclick="switchToDocTab('#allAppointments')"><i class="bi bi-list-check me-1"></i> Master Consultations Log</button>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Doctor Profile Tab -->
-                <div class="tab-pane fade" id="doctorProfile">
-                    <div class="card shadow-sm border-0 p-4">
-                        <div class="d-flex justify-content-between align-items-center mb-4 pb-3 border-bottom">
+                <!-- Metrics Grid -->
+                <div class="row g-4 mb-4">
+                    <div class="col-md-3">
+                        <div class="stat-card d-flex align-items-center">
+                            <div class="stat-icon bg-light-primary me-3"><i class="bi bi-calendar-check"></i></div>
                             <div>
-                                <h4 class="fw-bold mb-0">Doctor Profile & Consultation Setup</h4>
-                                <small class="text-muted">Update your specialty, fee structure, and consultation availability</small>
+                                <h3 class="fw-bold mb-0" id="docTodayApts">0</h3>
+                                <small class="text-muted">Today's Queue</small>
                             </div>
-                            <span id="docCode" class="badge bg-primary fs-6 px-3 py-2"></span>
                         </div>
-                        <form onsubmit="saveDoctorProfile(event)">
-                            <div class="row g-3">
-                                <div class="col-md-6">
-                                    <label class="form-label fw-bold">Full Name *</label>
-                                    <input type="text" id="docFullName" class="form-control form-control-lg" required>
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label fw-bold">Specialization *</label>
-                                    <input type="text" id="docSpec" class="form-control form-control-lg" required>
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label fw-bold">Qualifications</label>
-                                    <input type="text" id="docQual" class="form-control form-control-lg" placeholder="e.g. MD, FACC">
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label fw-bold">Years of Experience</label>
-                                    <input type="number" id="docExp" class="form-control form-control-lg" min="0">
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label fw-bold">Consultation Fee ($)</label>
-                                    <input type="number" step="0.01" id="docFee" class="form-control form-control-lg" required>
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label fw-bold">Phone Number</label>
-                                    <input type="tel" id="docPhone" class="form-control form-control-lg" required>
-                                </div>
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-lg mt-4 px-4"><i class="bi bi-check-circle me-1"></i> Save Doctor Profile</button>
-                        </form>
                     </div>
+                    <div class="col-md-3">
+                        <div class="stat-card d-flex align-items-center">
+                            <div class="stat-icon bg-light-warning me-3"><i class="bi bi-hourglass-split"></i></div>
+                            <div>
+                                <h3 class="fw-bold mb-0" id="docUpcomingApts">0</h3>
+                                <small class="text-muted">Upcoming</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stat-card d-flex align-items-center">
+                            <div class="stat-icon bg-light-success me-3"><i class="bi bi-check2-square"></i></div>
+                            <div>
+                                <h3 class="fw-bold mb-0" id="docCompletedApts">0</h3>
+                                <small class="text-muted">Completed</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stat-card d-flex align-items-center">
+                            <div class="stat-icon bg-light-danger me-3"><i class="bi bi-people"></i></div>
+                            <div>
+                                <h3 class="fw-bold mb-0" id="docTotalPatients">0</h3>
+                                <small class="text-muted">Total Patients</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Today's Schedule Preview -->
+                <div class="card border-0 shadow-sm p-4">
+                    <h5 class="fw-bold mb-3"><i class="bi bi-clock-history text-primary me-2"></i> Today's Priority Consultations</h5>
+                    <div id="dashboardTodayScheduleContainer"></div>
+                </div>
+            </div>
+
+            <!-- Today Schedule Tab Pane -->
+            <div class="tab-pane fade" id="todaySchedule" role="tabpanel">
+                <div class="card shadow-sm border-0 p-4">
+                    <h4 class="fw-bold mb-3">Today's Patient Schedule</h4>
+                    <div id="fullTodayScheduleContainer"></div>
+                </div>
+            </div>
+
+            <!-- All Appointments Tab Pane -->
+            <div class="tab-pane fade" id="allAppointments" role="tabpanel">
+                <div class="card shadow-sm border-0 p-4">
+                    <h4 class="fw-bold mb-3">Master Patient Appointment Log</h4>
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle table-custom">
+                            <thead>
+                                <tr>
+                                    <th>Code</th>
+                                    <th>Patient Name</th>
+                                    <th>Date</th>
+                                    <th>Time</th>
+                                    <th>Reason for Visit</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="docAllAptsTableBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Doctor Profile Tab Pane -->
+            <div class="tab-pane fade" id="doctorProfile" role="tabpanel">
+                <div class="card shadow-sm border-0 p-4">
+                    <div class="d-flex justify-content-between align-items-center mb-4 pb-3 border-bottom">
+                        <div>
+                            <h4 class="fw-bold mb-0">Doctor Profile & Consultation Setup</h4>
+                            <small class="text-muted">Update your specialty, fee structure, and consultation availability</small>
+                        </div>
+                        <span id="docCode" class="badge bg-primary fs-6 px-3 py-2"></span>
+                    </div>
+                    <form onsubmit="saveDoctorProfile(event)">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">Full Name *</label>
+                                <input type="text" id="docFullName" class="form-control form-control-lg" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">Specialization *</label>
+                                <input type="text" id="docSpec" class="form-control form-control-lg" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">Qualifications</label>
+                                <input type="text" id="docQual" class="form-control form-control-lg" placeholder="e.g. MD, FACC">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">Years of Experience</label>
+                                <input type="number" id="docExp" class="form-control form-control-lg" min="0">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">Consultation Fee ($)</label>
+                                <input type="number" step="0.01" id="docFee" class="form-control form-control-lg" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">Phone Number</label>
+                                <input type="tel" id="docPhone" class="form-control form-control-lg" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-lg mt-4 px-4"><i class="bi bi-check-circle me-1"></i> Save Doctor Profile</button>
+                    </form>
                 </div>
             </div>
         </div>
