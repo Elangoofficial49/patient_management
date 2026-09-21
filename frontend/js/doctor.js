@@ -8,14 +8,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function initDoctorPortal() {
     const user = getUser();
+    const displayName = user.fullName || user.username;
     if (document.getElementById('doctorNameSpan')) {
-        document.getElementById('doctorNameSpan').textContent = user.fullName || user.username;
+        document.getElementById('doctorNameSpan').textContent = displayName;
+    }
+    if (document.getElementById('docNameHeader')) {
+        document.getElementById('docNameHeader').textContent = displayName;
+    }
+    if (document.getElementById('docAvatarPill')) {
+        document.getElementById('docAvatarPill').textContent = displayName.charAt(0).toUpperCase();
     }
 
     loadDoctorDashboard();
     loadTodayAppointments();
     loadAllDoctorAppointments();
     loadDoctorProfile();
+}
+
+function switchToDocTab(targetSelector) {
+    const link = document.querySelector(`.sidebar-nav a[data-bs-target="${targetSelector}"]`) || document.querySelector(`.sidebar-nav a[href="${targetSelector}"]`);
+    if (link) {
+        link.click();
+    }
 }
 
 async function loadDoctorDashboard() {

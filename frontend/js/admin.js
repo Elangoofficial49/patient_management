@@ -8,8 +8,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function initAdminPortal() {
     const user = getUser();
+    const displayName = user.fullName || user.username;
     if (document.getElementById('adminNameSpan')) {
-        document.getElementById('adminNameSpan').textContent = user.fullName || user.username;
+        document.getElementById('adminNameSpan').textContent = displayName;
+    }
+    if (document.getElementById('admAvatarPill')) {
+        document.getElementById('admAvatarPill').textContent = displayName.charAt(0).toUpperCase();
     }
 
     loadAdminDashboard();
@@ -18,6 +22,13 @@ function initAdminPortal() {
     loadAdminPatients();
     loadAdminAppointments();
     loadAdminUsers();
+}
+
+function switchToAdminTab(targetSelector) {
+    const link = document.querySelector(`.sidebar-nav a[data-bs-target="${targetSelector}"]`) || document.querySelector(`.sidebar-nav a[href="${targetSelector}"]`);
+    if (link) {
+        link.click();
+    }
 }
 
 async function loadAdminDashboard() {

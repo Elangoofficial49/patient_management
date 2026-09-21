@@ -126,14 +126,6 @@ body {
     overflow: hidden;
 }
 
-.hero-section::before {
-    content: '';
-    position: absolute;
-    top: 0; right: 0; bottom: 0; left: 0;
-    background: radial-gradient(circle at 80% 20%, rgba(2, 195, 154, 0.15) 0%, transparent 50%);
-    pointer-events: none;
-}
-
 .hero-title {
     font-size: 3.25rem;
     font-weight: 800;
@@ -250,43 +242,10 @@ body {
     font-weight: 700;
 }
 
-/* Testimonial Cards */
-.testimonial-card {
-    background: white;
-    border-radius: var(--radius-md);
-    padding: 28px;
-    border: 1px solid var(--border-color);
-    box-shadow: var(--shadow-sm);
-}
-
-/* Footer */
-footer {
-    background-color: var(--primary);
-    color: #94A3B8;
-    padding-top: 60px;
-    padding-bottom: 30px;
-}
-
-footer h5 {
-    color: #FFFFFF;
-    font-weight: 700;
-    margin-bottom: 20px;
-}
-
-footer a {
-    color: #94A3B8;
-    text-decoration: none;
-    transition: color 0.2s ease;
-}
-
-footer a:hover {
-    color: #02C39A;
-}
-
-/* Dashboard Sidebar & Content */
+/* Dashboard Sidebar & Main Structure */
 .dashboard-wrapper {
     display: flex;
-    min-height: calc(100vh - 60px);
+    min-height: 100vh;
 }
 
 .sidebar {
@@ -295,6 +254,9 @@ footer a:hover {
     color: var(--sidebar-color);
     padding: 24px 0;
     flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .sidebar-header {
@@ -306,7 +268,8 @@ footer a:hover {
 .sidebar-header h5 {
     color: #FFFFFF;
     margin: 0;
-    font-weight: 700;
+    font-weight: 800;
+    font-size: 1.25rem;
 }
 
 .sidebar-nav {
@@ -340,22 +303,70 @@ footer a:hover {
 .dashboard-content {
     flex-grow: 1;
     padding: 36px;
-    background-color: #F1F5F9;
+    background-color: #F8FAFC;
 }
 
-/* Dashboard Stats Cards */
+/* Dashboard Top Header Bar */
+.dashboard-topbar {
+    background: white;
+    border-radius: var(--radius-md);
+    padding: 20px 28px;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 32px;
+}
+
+.user-avatar-pill {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #00A896 0%, #028090 100%);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 10px rgba(0, 168, 150, 0.25);
+}
+
+/* Dashboard Hero Greeting Banner */
+.dash-welcome-card {
+    background: linear-gradient(135deg, #0F2537 0%, #1E3A5F 60%, #00A896 100%);
+    color: white;
+    border-radius: var(--radius-md);
+    padding: 32px;
+    box-shadow: var(--shadow-md);
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 32px;
+}
+
+.dash-welcome-card::after {
+    content: '';
+    position: absolute;
+    right: -20px;
+    bottom: -20px;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(2, 195, 154, 0.2) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+/* Metric KPI Cards */
 .stat-card {
     background: white;
     border-radius: var(--radius-md);
     padding: 24px;
     box-shadow: var(--shadow-sm);
     border: 1px solid var(--border-color);
-    transition: transform 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .stat-card:hover {
-    transform: translateY(-3px);
+    transform: translateY(-4px);
     box-shadow: var(--shadow-md);
+    border-color: var(--primary-accent);
 }
 
 .stat-icon {
@@ -389,7 +400,81 @@ footer a:hover {
 .badge-cancelled { background-color: #FEE2E2; color: #B91C1C; }
 .badge-rescheduled { background-color: #F3E8FF; color: #6B21A8; }
 
-/* Custom Toast Container */
+/* Custom Tables */
+.table-custom {
+    background: white;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-color);
+}
+
+.table-custom th {
+    background-color: #F8FAFC;
+    color: #475569;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.5px;
+    padding: 16px 20px;
+    border-bottom: 1px solid #E2E8F0;
+}
+
+.table-custom td {
+    padding: 16px 20px;
+    vertical-align: middle;
+}
+
+/* Timeline Cards */
+.timeline-card {
+    background: white;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+    padding: 24px;
+    margin-bottom: 20px;
+    transition: all 0.2s ease;
+}
+
+.timeline-card:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--primary-accent);
+}
+
+/* Prescription Card */
+.prescription-card {
+    background: white;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+    padding: 24px;
+    margin-bottom: 16px;
+}
+
+/* Footer & Toasts */
+footer {
+    background-color: var(--primary);
+    color: #94A3B8;
+    padding-top: 60px;
+    padding-bottom: 30px;
+}
+
+footer h5 {
+    color: #FFFFFF;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+footer a {
+    color: #94A3B8;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+footer a:hover {
+    color: #02C39A;
+}
+
 #toast-container {
     position: fixed;
     top: 24px;

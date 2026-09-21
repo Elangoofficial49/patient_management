@@ -8,8 +8,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function initPatientPortal() {
     const user = getUser();
+    const displayName = user.fullName || user.username;
     if (document.getElementById('patientNameSpan')) {
-        document.getElementById('patientNameSpan').textContent = user.fullName || user.username;
+        document.getElementById('patientNameSpan').textContent = displayName;
+    }
+    if (document.getElementById('patientNameHeader')) {
+        document.getElementById('patientNameHeader').textContent = displayName;
+    }
+    if (document.getElementById('avatarPill')) {
+        document.getElementById('avatarPill').textContent = displayName.charAt(0).toUpperCase();
     }
 
     loadPatientDashboard();
@@ -19,6 +26,13 @@ function initPatientPortal() {
     loadPrescriptions();
     loadNotifications();
     loadProfile();
+}
+
+function switchToTab(targetSelector) {
+    const link = document.querySelector(`.sidebar-nav a[data-bs-target="${targetSelector}"]`) || document.querySelector(`.sidebar-nav a[href="${targetSelector}"]`);
+    if (link) {
+        link.click();
+    }
 }
 
 async function loadPatientDashboard() {
